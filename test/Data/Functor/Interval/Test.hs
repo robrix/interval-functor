@@ -29,9 +29,7 @@ tests = map checkParallel
       i <- forAll gi
       assert $ i `isSubintervalOf` i
     , (,) "transitivity" $ property $ do
-      i1 <- forAll gi
-      i2 <- forAll (superinterval i1)
-      i3 <- forAll (superinterval i2)
+      (i1, i2, i3) <- forAll gi >>= \ i1 -> forAll (superinterval i1) >>= \ i2 -> (,,) i1 i2 <$> forAll (superinterval i2)
       label $ (if i1 == i2 then "i1 = i2" else "i1 ⊂ i2") <> " ∧ " <> (if i2 == i3 then "i2 = i3" else "i2 ⊂ i3")
       assert (i1 `isSubintervalOf` i3)
     , (,) "offset" $ property $ do
@@ -46,9 +44,7 @@ tests = map checkParallel
       i <- forAll gi
       assert $ i `isSuperintervalOf` i
     , (,) "transitivity" $ property $ do
-      i1 <- forAll gi
-      i2 <- forAll (superinterval i1)
-      i3 <- forAll (superinterval i2)
+      (i1, i2, i3) <- forAll gi >>= \ i1 -> forAll (superinterval i1) >>= \ i2 -> (,,) i1 i2 <$> forAll (superinterval i2)
       label $ (if i1 == i2 then "i1 = i2" else "i1 ⊂ i2") <> " ∧ " <> (if i2 == i3 then "i2 = i3" else "i2 ⊂ i3")
       assert (i3 `isSuperintervalOf` i1)
     , (,) "offset" $ property $ do
@@ -63,9 +59,7 @@ tests = map checkParallel
       i <- forAll gi
       assert . not $ i `isProperSubintervalOf` i
     , (,) "transitivity" $ property $ do
-      i1 <- forAll gi
-      i2 <- forAll (properSuperinterval i1)
-      i3 <- forAll (properSuperinterval i2)
+      (i1, i3) <- forAll gi >>= \ i1 -> forAll (properSuperinterval i1) >>= \ i2 -> (,) i1 <$> forAll (properSuperinterval i2)
       assert (i1 `isProperSubintervalOf` i3)
     , (,) "offset" $ property $ do
       i <- forAll gi
@@ -79,10 +73,8 @@ tests = map checkParallel
       i <- forAll gi
       assert . not $ i `isProperSuperintervalOf` i
     , (,) "transitivity" $ property $ do
-      i1 <- forAll gi
-      i2 <- forAll (properSuperinterval i1)
-      i3 <- forAll (properSuperinterval i2)
-      assert (i3 `isProperSuperintervalOf` i2)
+      (i1, i3) <- forAll gi >>= \ i1 -> forAll (properSuperinterval i1) >>= \ i2 -> (,) i1 <$> forAll (properSuperinterval i2)
+      assert (i3 `isProperSuperintervalOf` i1)
     , (,) "offset" $ property $ do
       i <- forAll gi
       d <- forAll nonZeroDelta

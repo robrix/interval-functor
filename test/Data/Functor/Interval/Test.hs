@@ -8,8 +8,8 @@ module Data.Functor.Interval.Test
 , nonZeroDelta
 ) where
 
-import           Control.Lens ((&), (+~), (-~))
 import           Control.Monad (join)
+import           Data.Function ((&))
 import           Data.Functor.Identity
 import           Data.Functor.Interval
 import           Hedgehog
@@ -184,3 +184,8 @@ delta = Gen.choice [ pure 0, fromIntegral <$> Gen.int (Range.linear 0 10) ]
 
 nonZeroDelta :: (MonadGen m, Num a) => m a
 nonZeroDelta = (+ 1) <$> delta
+
+(+~), (-~) :: Num a => ((a -> Identity a) -> s -> Identity t) -> a -> s -> t
+l +~ x = runIdentity . l (Identity . (+ x))
+l -~ x = runIdentity . l (Identity . subtract x)
+infixr 4 +~, -~

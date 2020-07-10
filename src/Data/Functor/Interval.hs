@@ -30,7 +30,6 @@ module Data.Functor.Interval
 , isProperSuperintervalOf
 , before
 , after
-, uniformI
 , Union(..)
 , union
 , Intersection(..)
@@ -45,14 +44,12 @@ module Data.Functor.Interval
 ) where
 
 import           Control.Applicative (liftA2)
-import           Control.Effect.Random
 import           Control.Monad.Trans.Class
 import           Data.Coerce (coerce)
 import           Data.Fixed (mod')
 import           Data.Functor.I
 import           Data.Semigroup
 import           GHC.Generics (Generic)
-import qualified System.Random as R
 
 data Interval f a = Interval
   { inf :: !(f a)
@@ -221,10 +218,6 @@ isProperSuperintervalOf a b = isSuperintervalOf a b && or (liftA2 (/=) a b)
 before, after :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
 before a b = inf a `lte` sup b
 after  a b = sup a `lt`  sup b
-
-
-uniformI :: (R.Random a, Applicative f, Traversable f, Has Random sig m) => Interval f a -> m (f a)
-uniformI i = traverse uniformR (liftI (,) i)
 
 
 newtype Union f a = Union { getUnion :: Interval f a }

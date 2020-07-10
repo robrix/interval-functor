@@ -172,8 +172,8 @@ size :: (Applicative f, Num a) => Interval f a -> f a
 size = liftI (flip (-))
 
 toUnit, fromUnit :: (Applicative f, Fractional a) => Interval f a -> f a -> f a
-toUnit   i x = dimensionwise (\ i x -> getI ((I x - inf  i) / size i)) i <*> x
-fromUnit i x = dimensionwise (\ i x -> getI  (I x * size i  + inf  i)) i <*> x
+toUnit   i x = liftI (\ inf sup x -> (x - inf) / (sup - inf))        i <*> x
+fromUnit i x = liftI (\ inf sup x ->  x        * (sup - inf)  + inf) i <*> x
 
 
 range :: Enum (f a) => Interval f a -> [f a]

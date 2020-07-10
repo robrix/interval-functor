@@ -12,7 +12,6 @@ module Data.Functor.Interval
 , sup_
 , (...)
 , point
-, dimensionwise
 , liftI
 , size
 , toUnit
@@ -47,7 +46,6 @@ import           Control.Applicative (liftA2)
 import           Control.Monad.Trans.Class
 import           Data.Coerce (coerce)
 import           Data.Fixed (mod')
-import           Data.Functor.I
 import           Data.Semigroup
 import           GHC.Generics (Generic)
 
@@ -161,9 +159,6 @@ infix 3 ...
 
 point :: f a -> Interval f a
 point p = Interval p p
-
-dimensionwise :: Applicative f => (Interval I a -> b) -> Interval f a -> f b
-dimensionwise f = liftI (fmap f . (...))
 
 liftI :: Applicative f => (a -> a -> b) -> Interval f a -> f b
 liftI f i = liftA2 f (inf i) (sup i)

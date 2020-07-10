@@ -42,12 +42,12 @@ module Data.Functor.Interval
 , gte
 ) where
 
-import           Control.Applicative (liftA2)
-import           Control.Monad.Trans.Class
-import           Data.Coerce (coerce)
-import           Data.Fixed (mod')
-import           Data.Semigroup
-import           GHC.Generics (Generic)
+import Control.Applicative (liftA2)
+import Control.Monad.Trans.Class
+import Data.Coerce (coerce)
+import Data.Fixed (mod')
+import Data.Semigroup
+import GHC.Generics (Generic)
 
 data Interval f a = Interval
   { inf :: !(f a)

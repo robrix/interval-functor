@@ -143,7 +143,10 @@ instance (Applicative f, Ord a) => Semigroup (Interval f a) where
 -- Lenses
 
 inf_, sup_ :: Lens' (Interval f a) (f a)
+
+-- | Access the infimum of an interval.
 inf_ = lens inf $ \ i inf -> i{ inf }
+
 sup_ = lens sup $ \ i sup -> i{ sup }
 
 

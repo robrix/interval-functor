@@ -142,10 +142,8 @@ instance (Applicative f, Ord a) => Semigroup (Interval f a) where
 
 -- Lenses
 
-inf_ :: Lens' (Interval f a) (f a)
+inf_, sup_ :: Lens' (Interval f a) (f a)
 inf_ = lens inf $ \ i inf -> i{ inf }
-
-sup_ :: Lens' (Interval f a) (f a)
 sup_ = lens sup $ \ i sup -> i{ sup }
 
 

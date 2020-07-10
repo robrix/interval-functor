@@ -8,6 +8,7 @@
 {-# LANGUAGE ScopedTypeVariables #-}
 module Data.Functor.Interval
 ( Interval(..)
+  -- * Lenses
 , inf_
 , sup_
 , (...)
@@ -137,6 +138,8 @@ instance (Applicative f, Ord a) => Semigroup (Interval f a) where
   (<>) = union
   stimes = stimesIdempotent
 
+
+-- Lenses
 
 inf_ :: Lens' (Interval f a) (f a)
 inf_ = lens inf $ \ i inf -> i{ inf }

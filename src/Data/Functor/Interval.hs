@@ -138,13 +138,6 @@ instance (Applicative f, Ord a) => Semigroup (Interval f a) where
   stimes = stimesIdempotent
 
 
-type Lens' s a = forall f . Functor f => (a -> f a) -> (s -> f s)
-
-lens :: (s -> a) -> (s -> a -> s) -> Lens' s a
-lens get put afa s = fmap (put s) (afa (get s))
-{-# INLINE lens #-}
-
-
 inf_ :: Lens' (Interval f a) (f a)
 inf_ = lens inf $ \ i inf -> i{ inf }
 
@@ -259,3 +252,12 @@ gt = liftRelation (>)
 
 gte :: (Applicative f, Foldable f, Ord a) => f a -> f a -> Bool
 gte = liftRelation (>=)
+
+
+-- Internal
+
+type Lens' s a = forall f . Functor f => (a -> f a) -> (s -> f s)
+
+lens :: (s -> a) -> (s -> a -> s) -> Lens' s a
+lens get put afa s = fmap (put s) (afa (get s))
+{-# INLINE lens #-}

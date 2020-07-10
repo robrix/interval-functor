@@ -4,6 +4,7 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE NamedFieldPuns #-}
+{-# LANGUAGE RankNTypes #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 module Data.Functor.Interval
 ( Interval(..)
@@ -45,7 +46,6 @@ module Data.Functor.Interval
 
 import           Control.Applicative (liftA2)
 import           Control.Effect.Random
-import           Control.Lens (Lens', lens)
 import           Control.Monad.Trans.Class
 import           Data.Coerce (coerce)
 import           Data.Fixed (mod')
@@ -141,6 +141,13 @@ instance (Applicative f, Floating a) => Floating (Interval f a) where
 instance (Applicative f, Ord a) => Semigroup (Interval f a) where
   (<>) = union
   stimes = stimesIdempotent
+
+
+type Lens' s a = forall f . Functor f => (a -> f a) -> (s -> f s)
+
+lens :: (s -> a) -> (s -> a -> s) -> Lens' s a
+lens get put afa s = fmap (put s) (afa (get s))
+{-# INLINE lens #-}
 
 
 inf_ :: Lens' (Interval f a) (f a)

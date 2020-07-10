@@ -11,6 +11,7 @@ module Data.Functor.Interval
   -- * Lenses
 , inf_
 , sup_
+  -- * Constructors
 , (...)
 , point
 , liftI
@@ -147,6 +148,8 @@ inf_ = lens inf $ \ i inf -> i{ inf }
 sup_ :: Lens' (Interval f a) (f a)
 sup_ = lens sup $ \ i sup -> i{ sup }
 
+
+-- Constructors
 
 (...) :: Applicative f => a -> a -> Interval f a
 inf...sup = Interval (pure inf) (pure sup)

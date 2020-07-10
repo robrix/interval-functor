@@ -10,7 +10,7 @@ module Data.Functor.Interval.Test
 
 import           Control.Lens ((&), (+~), (-~))
 import           Control.Monad (join)
-import           Data.Functor.I
+import           Data.Functor.Identity
 import           Data.Functor.Interval
 import           Hedgehog
 import qualified Hedgehog.Gen as Gen
@@ -21,7 +21,7 @@ tests = map checkParallel
   [ Group "point"
     [ (,) "membership" $ property $ do
       p <- pure <$> forAll gp
-      member p (point p :: Interval I Int) === True
+      member p (point p :: Interval Identity Int) === True
     ]
 
   , Group "isSubintervalOf"
@@ -151,7 +151,7 @@ tests = map checkParallel
   gi = interval gp
 
 
-interval :: (MonadGen m, Num a) => m a -> m (Interval I a)
+interval :: (MonadGen m, Num a) => m a -> m (Interval Identity a)
 interval p = Gen.choice
   [ join (...) <$> p
   , mk <$> p <*> p
@@ -159,13 +159,13 @@ interval p = Gen.choice
   where
   mk a b = a ... a + b + 1
 
-superinterval :: (MonadGen m, Num a) => Interval I a -> m (Interval I a)
+superinterval :: (MonadGen m, Num a) => Interval Identity a -> m (Interval Identity a)
 superinterval i = do
   l <- delta
   r <- delta
   pure $! Interval (inf i - l) (sup i + r)
 
-properSuperinterval :: (MonadGen m, Num a) => Interval I a -> m (Interval I a)
+properSuperinterval :: (MonadGen m, Num a) => Interval Identity a -> m (Interval Identity a)
 properSuperinterval i = Gen.choice
   [ do
     l <- nonZeroDelta

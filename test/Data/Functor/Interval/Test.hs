@@ -99,12 +99,10 @@ tests = map checkParallel
     ]
 
   , Group "wrap"
-    [ (,) "infimum" $ property $ do
+    [ (,) "lerp" $ property $ do
       i <- forAll (interval gf) >>= forAll . properSuperinterval
-      wrap i (inf i) === inf i
-    , (,) "midpoint" $ property $ do
-      i <- forAll (interval gf) >>= forAll . properSuperinterval
-      wrap i (midpoint i) === midpoint i
+      t <- forAll gf
+      wrap i (lerp t i) === lerp (snd (properFraction t :: (Integer, Rational))) i
     , (,) "supremum" $ property $ do
       i <- forAll (interval gf) >>= forAll . properSuperinterval
       wrap i (sup i) === inf i

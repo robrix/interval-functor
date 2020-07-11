@@ -341,10 +341,7 @@ lerp t = liftI (\ inf sup -> (1 - t) * inf + t * sup)
 -- Identity (-pi + x)
 --
 -- @
--- wrap i (inf i) = inf i
--- @
--- @
--- wrap i (midpoint i) = midpoint i
+-- wrap i (lerp t i) = lerp (snd (properFraction t)) i
 -- @
 -- @
 -- wrap i (sup i) = inf i

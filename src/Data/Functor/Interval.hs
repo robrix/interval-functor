@@ -453,6 +453,7 @@ isSuperintervalOf = flip isSubintervalOf
 {-# INLINE isSuperintervalOf #-}
 
 -- | Test whether one interval is a proper subinterval of another (i.e. a subinterval, but not equal).
+--
 -- @
 -- i \`isProperSubintervalOf\` i = False
 -- @
@@ -464,6 +465,7 @@ isProperSubintervalOf a b = isSubintervalOf a b && or (liftA2 (/=) a b)
 {-# INLINE isProperSubintervalOf #-}
 
 -- | Test whether one interval is a proper superinterval of another (i.e. a superinterval, but not equal).
+--
 -- @
 -- i \`isProperSuperintervalOf\` i = False
 -- @

@@ -57,6 +57,9 @@ tests = map checkParallel
     , (,) "supremum" $ property $ do
       i <- forAll gi
       lerp 1 i === sup i
+    , (,) "midpoint" $ property $ do
+      i <- forAll (interval gf)
+      lerp 0.5 i === midpoint i
     ]
 
   , Group "member"

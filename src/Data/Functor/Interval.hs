@@ -337,15 +337,18 @@ traverseInterval f = uncurryI (liftA2 Interval `on` f)
 -- | Test a point for inclusion within an interval.
 member :: (Applicative f, Foldable f, Ord a) => f a -> Interval f a -> Bool
 member = isSubintervalOf . point
+{-# INLINE member #-}
 
 
 -- | Test an interval for validity, i.e. non-emptiness.
 isValid :: (Applicative f, Foldable f, Ord a) => Interval f a -> Bool
 isValid = uncurryI lte
+{-# INLINE isValid #-}
 
 -- | Test whether an interval is a singleton.
 isPoint :: (Applicative f, Foldable f, Eq a) => Interval f a -> Bool
 isPoint = and . liftI (==)
+{-# INLINE isPoint #-}
 
 
 -- Relations

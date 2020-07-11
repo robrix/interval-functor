@@ -286,6 +286,9 @@ fromUnit i x = liftI (\ inf sup t -> (1 - t) * inf + t * sup) i <*> x
 -- transform i i = id
 -- @
 -- @
+-- transform i j . transform j i = id
+-- @
+-- @
 -- transform (0...1) = fromUnit
 -- @
 -- @

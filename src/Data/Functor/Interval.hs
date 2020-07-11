@@ -343,6 +343,7 @@ member = isSubintervalOf . point
 isValid :: (Applicative f, Foldable f, Ord a) => Interval f a -> Bool
 isValid = uncurryI lte
 
+-- | Test whether an interval is a singleton.
 isPoint :: (Applicative f, Foldable f, Eq a) => Interval f a -> Bool
 isPoint = and . liftI (==)
 

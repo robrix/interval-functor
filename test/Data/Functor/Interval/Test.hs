@@ -55,6 +55,11 @@ tests = map checkParallel
       i <- forAll (interval gf) >>= forAll . properSuperinterval
       p <- pure <$> forAll gf
       transform i i p === p
+    , (,) "inverse" $ property $ do
+      i <- forAll (interval gf) >>= forAll . properSuperinterval
+      j <- forAll (interval gf) >>= forAll . properSuperinterval
+      p <- pure <$> forAll gf
+      transform i j (transform j i p) === p
     , (,) "fromUnit" $ property $ do
       i <- forAll (interval gf)
       p <- pure <$> forAll gf

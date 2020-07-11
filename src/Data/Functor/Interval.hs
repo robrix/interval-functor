@@ -382,6 +382,9 @@ instance (Applicative f, Ord a) => Semigroup (Union f a) where
   Union i1 <> Union i2 = Union ((min...max) <*> i1 <*> i2)
   stimes = stimesIdempotent
 
+-- | Take the union of two intervals.
+--
+-- This is equivalent to the 'Semigroup' instance for 'Interval' (and for 'Union'), and is provided for clarity and convenience.
 union :: forall f a . (Applicative f, Ord a) => Interval f a -> Interval f a -> Interval f a
 union = coerce ((<>) :: Union f a -> Union f a -> Union f a)
 

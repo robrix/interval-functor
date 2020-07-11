@@ -266,7 +266,7 @@ toUnit, fromUnit :: (Applicative f, Fractional a) => Interval f a -> f a -> f a
 -- | Linearly transform a point in @f@ from a non-point interval of @f@ to the unit interval.
 --
 -- @
--- toUnit = (`transform` 0...1)
+-- toUnit = (\`transform\` 0...1)
 -- @
 -- @
 -- toUnit i . fromUnit i = id
@@ -307,7 +307,7 @@ fromUnit i x = liftI (\ inf sup t -> (1 - t) * inf + t * sup) i <*> x
 -- transform (0...1) = fromUnit
 -- @
 -- @
--- (`transform` 0...1) = toUnit
+-- (\`transform\` 0...1) = toUnit
 -- @
 transform :: (Applicative f, Fractional a) => Interval f a -> Interval f a -> f a -> f a
 transform i1 i2 x = uncurryI (\ inf1 sup1 -> uncurryI (\ inf2 sup2 -> liftA2 f inf1 sup1 <*> inf2 <*> sup2 <*> x) i2) i1
@@ -431,10 +431,10 @@ isPoint = and . liftI (==)
 -- | Test whether one interval is a subinterval of another.
 --
 -- @
--- i `isSubintervalOf` i = True
+-- i \`isSubintervalOf\` i = True
 -- @
 -- @
--- (i `isSubintervalOf` j) && (j `isSubintervalOf` k) => (i `isSubintervalOf` k)
+-- i \`isSubintervalOf\` j && j \`isSubintervalOf\` k => i \`isSubintervalOf\` k
 -- @
 isSubintervalOf :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
 isSubintervalOf a b = inf a `gte` inf b && sup a `lte` sup b
@@ -443,10 +443,10 @@ isSubintervalOf a b = inf a `gte` inf b && sup a `lte` sup b
 -- | Test whether one interval is a superinterval of another.
 --
 -- @
--- i `isSuperintervalOf` i = True
+-- i \`isSuperintervalOf\` i = True
 -- @
 -- @
--- (i `isSuperintervalOf` j) && (j `isSuperintervalOf` k) => (i `isSuperintervalOf` k)
+-- i \`isSuperintervalOf\` j && j \`isSuperintervalOf\` k => i \`isSuperintervalOf\` k
 -- @
 isSuperintervalOf :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
 isSuperintervalOf = flip isSubintervalOf
@@ -454,10 +454,10 @@ isSuperintervalOf = flip isSubintervalOf
 
 -- | Test whether one interval is a proper subinterval of another (i.e. a subinterval, but not equal).
 -- @
--- i `isProperSubintervalOf` i = False
+-- i \`isProperSubintervalOf\` i = False
 -- @
 -- @
--- (i `isProperSubintervalOf` j) && (j `isProperSubintervalOf` k) => (i `isProperSubintervalOf` k)
+-- i \`isProperSubintervalOf\` j && j \`isProperSubintervalOf\` k => i \`isProperSubintervalOf\` k
 -- @
 isProperSubintervalOf :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
 isProperSubintervalOf a b = isSubintervalOf a b && or (liftA2 (/=) a b)
@@ -465,10 +465,10 @@ isProperSubintervalOf a b = isSubintervalOf a b && or (liftA2 (/=) a b)
 
 -- | Test whether one interval is a proper superinterval of another (i.e. a superinterval, but not equal).
 -- @
--- i `isProperSuperintervalOf` i = False
+-- i \`isProperSuperintervalOf\` i = False
 -- @
 -- @
--- (i `isProperSuperintervalOf` j) && (j `isProperSuperintervalOf` k) => (i `isProperSuperintervalOf` k)
+-- i \`isProperSuperintervalOf\` j && j \`isProperSuperintervalOf\` k => i \`isProperSuperintervalOf\` k
 -- @
 isProperSuperintervalOf :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
 isProperSuperintervalOf = flip isProperSubintervalOf
@@ -478,10 +478,10 @@ isProperSuperintervalOf = flip isProperSubintervalOf
 -- | Test whether two intervals intersect.
 --
 -- @
--- i `intersects` i = True
+-- i \`intersects\` i = True
 -- @
 -- @
--- i `intersects` j = j `intersects` i
+-- i \`intersects\` j = j \`intersects\` i
 -- @
 intersects :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
 intersects a b = isValid (intersection a b)

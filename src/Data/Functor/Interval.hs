@@ -265,9 +265,11 @@ toUnit, fromUnit :: (Applicative f, Fractional a) => Interval f a -> f a -> f a
 
 -- | Linearly transform a point in @f@ from an interval of @f@ to the unit interval.
 toUnit   i x = liftI (\ inf sup x -> (x - inf) / (sup - inf))        i <*> x
+{-# INLINE toUnit #-}
 
 -- | Linearly transform a point in @f@ from the unit interval to an interval of @f@.
 fromUnit i x = liftI (\ inf sup x ->  x        * (sup - inf)  + inf) i <*> x
+{-# INLINE fromUnit #-}
 
 -- | Linearly interpolate between the endpoints of an interval.
 --
@@ -279,6 +281,7 @@ fromUnit i x = liftI (\ inf sup x ->  x        * (sup - inf)  + inf) i <*> x
 -- @
 lerp :: (Applicative f, Num a) => a -> Interval f a -> f a
 lerp t = liftI (\ inf sup -> (1 - t) * inf + t * sup)
+{-# INLINE lerp #-}
 
 -- | Clamp a point in @f@ to the given interval, wrapping out-of-bounds values around.
 --
@@ -288,6 +291,7 @@ lerp t = liftI (\ inf sup -> (1 - t) * inf + t * sup)
 -- Identity (-pi + x)
 wrap :: (Applicative f, Real a) => Interval f a -> f a -> f a
 wrap i x = liftI (\ inf sup x -> ((x + sup) `mod'` (sup - inf)) + inf) i <*> x
+{-# INLINE wrap #-}
 
 
 -- Traversals

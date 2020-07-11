@@ -160,7 +160,7 @@ sup_ = lens sup $ \ i sup -> i{ sup }
 
 -- Constructors
 
--- | Construct a square interval in @f@ dimensions from the given endpoints.
+-- | Construct a square interval in @f@ dimensions from the given coordinates.
 --
 -- >>> import Data.Functor.Identity
 -- >>> 0...1 :: Interval Identity Int

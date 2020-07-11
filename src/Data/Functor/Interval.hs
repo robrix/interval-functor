@@ -230,6 +230,10 @@ wrap i x = liftI (\ inf sup x -> ((x + sup) `mod'` (sup - inf)) + inf) i <*> x
 --
 -- >>> foldMapInterval (\ p -> [p]) (Interval (V2 1 2) (V2 3 4))
 -- [V2 1 2, V2 3 4]
+--
+-- @
+-- foldMap f = foldMapInterval (foldMap f)
+-- @
 foldMapInterval :: Semigroup s => (f a -> s) -> Interval f a -> s
 foldMapInterval f i = f (inf i) <> f (sup i)
 

@@ -19,10 +19,10 @@ module Data.Functor.Interval
   -- * Eliminators
 , liftI
 , size
-, toUnit
-, fromUnit
 , range
 , ranges
+, toUnit
+, fromUnit
 , wrap
   -- * Predicates
 , member
@@ -205,10 +205,6 @@ liftI f i = liftA2 f (inf i) (sup i)
 size :: (Applicative f, Num a) => Interval f a -> f a
 size = liftI (flip (-))
 
-toUnit, fromUnit :: (Applicative f, Fractional a) => Interval f a -> f a -> f a
-toUnit   i x = liftI (\ inf sup x -> (x - inf) / (sup - inf))        i <*> x
-fromUnit i x = liftI (\ inf sup x ->  x        * (sup - inf)  + inf) i <*> x
-
 
 range :: Enum (f a) => Interval f a -> [f a]
 range = enumFromTo . inf <*> sup
@@ -216,6 +212,10 @@ range = enumFromTo . inf <*> sup
 ranges :: (Applicative f, Enum a) => Interval f a -> f [a]
 ranges = liftI enumFromTo
 
+
+toUnit, fromUnit :: (Applicative f, Fractional a) => Interval f a -> f a -> f a
+toUnit   i x = liftI (\ inf sup x -> (x - inf) / (sup - inf))        i <*> x
+fromUnit i x = liftI (\ inf sup x ->  x        * (sup - inf)  + inf) i <*> x
 
 wrap :: (Applicative f, Real a) => Interval f a -> f a -> f a
 wrap i x = liftI (\ inf sup x -> ((x + sup) `mod'` (sup - inf)) + inf) i <*> x

@@ -258,8 +258,8 @@ foldMapInterval f = uncurryI ((<>) `on` f)
 --
 -- Where 'fmap' only maps over the individual coordinates, 'mapInterval' can change the space as well.
 --
--- >>> mapInterval (\ p -> (p, x)) (Interval a b)
--- (a, x)...(b, x)
+-- >>> mapInterval (\ (V2 x y) -> V3 x y 0) (Interval (V2 1 2) (V2 3 4))
+-- V3 1 2 0...V3 3 4 0
 --
 -- @
 -- fmap f = mapInterval (fmap f)

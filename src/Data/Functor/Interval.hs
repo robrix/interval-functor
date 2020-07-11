@@ -144,7 +144,9 @@ instance (Applicative f, Floating a) => Floating (Interval f a) where
 
 instance (Applicative f, Ord a) => Semigroup (Interval f a) where
   (<>) = union
+  {-# INLINE (<>) #-}
   stimes = stimesIdempotent
+  {-# INLINE stimes #-}
 
 
 -- Lenses

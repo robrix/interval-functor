@@ -353,23 +353,28 @@ isPoint = and . liftI (==)
 -- | Test whether one interval is a subinterval of another.
 isSubintervalOf :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
 isSubintervalOf a b = inf a `gte` inf b && sup a `lte` sup b
+{-# INLINE isSubintervalOf #-}
 
 -- | Test whether one interval is a superinterval of another.
 isSuperintervalOf :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
 isSuperintervalOf = flip isSubintervalOf
+{-# INLINE isSuperintervalOf #-}
 
 -- | Test whether one interval is a proper subinterval of another (i.e. a subinterval, but not equal).
 isProperSubintervalOf :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
 isProperSubintervalOf a b = isSubintervalOf a b && or (liftA2 (/=) a b)
+{-# INLINE isProperSubintervalOf #-}
 
 -- | Test whether one interval is a proper superinterval of another (i.e. a subinterval, but not equal).
 isProperSuperintervalOf :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
 isProperSuperintervalOf = flip isProperSubintervalOf
+{-# INLINE isProperSuperintervalOf #-}
 
 
 -- | Test whether two intervals intersect.
 intersects :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
 intersects a b = isValid (intersection a b)
+{-# INLINE intersects #-}
 
 
 -- Semigroups

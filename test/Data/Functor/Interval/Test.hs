@@ -33,6 +33,12 @@ tests = map checkParallel
       lerp 1 i === sup i
     ]
 
+  , Group "member"
+    [ (,) "infimum" $ property $ do
+      i <- forAll gi
+      assert $ member (inf i) i
+    ]
+
   , Group "isSubintervalOf"
     [ (,) "reflexivity" $ property $ do
       i <- forAll gi

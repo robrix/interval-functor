@@ -47,6 +47,7 @@ import Data.Fixed (mod')
 import Data.Semigroup
 import GHC.Generics (Generic)
 
+-- | @f@-dimensional intervals with coordinates in @a@.
 data Interval f a = Interval
   { inf :: !(f a)
   , sup :: !(f a)

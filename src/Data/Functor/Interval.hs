@@ -225,6 +225,7 @@ liftI f = uncurryI (liftA2 f)
 
 -- Enumerations
 
+-- | Enumerate the points in @f@ between the interval’s endpoints.
 range :: Enum (f a) => Interval f a -> [f a]
 range = uncurryI enumFromTo
 

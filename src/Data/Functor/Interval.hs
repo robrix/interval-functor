@@ -33,13 +33,13 @@ module Data.Functor.Interval
 , isSuperintervalOf
 , isProperSubintervalOf
 , isProperSuperintervalOf
+, intersects
 , before
 , after
 , Union(..)
 , union
 , Intersection(..)
 , intersection
-, intersects
 ) where
 
 import Control.Applicative (liftA2)
@@ -249,6 +249,10 @@ isProperSuperintervalOf :: (Applicative f, Foldable f, Ord a) => Interval f a ->
 isProperSuperintervalOf = flip isProperSubintervalOf
 
 
+intersects :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
+intersects a b = isValid (intersection a b)
+
+
 before, after :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
 before a b = inf a `lte` sup b
 after  a b = sup a `lt`  sup b
@@ -274,10 +278,6 @@ instance (Applicative f, Ord a) => Semigroup (Intersection f a) where
 
 intersection :: forall f a . (Applicative f, Ord a) => Interval f a -> Interval f a -> Interval f a
 intersection = coerce ((<>) :: Intersection f a -> Intersection f a -> Intersection f a)
-
-
-intersects :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
-intersects a b = isValid (intersection a b)
 
 
 -- Internal

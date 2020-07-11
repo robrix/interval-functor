@@ -270,7 +270,7 @@ intersects :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a
 intersects a b = isValid (intersection a b)
 
 
--- Comparisons
+-- Internal
 
 liftRelation :: (Applicative f, Foldable f) => (a -> b -> Bool) -> f a -> f b -> Bool
 liftRelation rel a b = and (liftA2 rel a b)
@@ -286,8 +286,6 @@ lte = liftRelation (<=)
 gte :: (Applicative f, Foldable f, Ord a) => f a -> f a -> Bool
 gte = liftRelation (>=)
 
-
--- Internal
 
 type Lens' s a = forall f . Functor f => (a -> f a) -> (s -> f s)
 

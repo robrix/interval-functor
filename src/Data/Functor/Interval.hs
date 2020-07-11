@@ -210,6 +210,7 @@ point p = Interval p p
 diameter :: (Applicative f, Num a) => Interval f a -> f a
 diameter = liftI (fmap abs . flip (-))
 
+-- | Compute the midpoint of an interval, halfway between the endpoints.
 midpoint :: (Applicative f, Fractional a) => Interval f a -> f a
 midpoint = lerp 0.5
 

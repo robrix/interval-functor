@@ -438,6 +438,10 @@ isSubintervalOf a b = inf a `gte` inf b && sup a `lte` sup b
 {-# INLINE isSubintervalOf #-}
 
 -- | Test whether one interval is a superinterval of another.
+--
+-- @
+-- i `isSuperintervalOf` i = True
+-- @
 isSuperintervalOf :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
 isSuperintervalOf = flip isSubintervalOf
 {-# INLINE isSuperintervalOf #-}

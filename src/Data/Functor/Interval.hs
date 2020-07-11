@@ -306,7 +306,7 @@ fromUnit i x = liftI (\ inf sup t -> (1 - t) * inf + t * sup) i <*> x
 transform :: (Applicative f, Fractional a) => Interval f a -> Interval f a -> f a -> f a
 transform i1 i2 x = uncurryI (\ inf1 sup1 -> uncurryI (\ inf2 sup2 -> liftA2 f inf1 sup1 <*> inf2 <*> sup2 <*> x) i2) i1
   where
-  f inf1 sup1 inf2 sup2 t = (inf2 - t * inf2 + t * sup2 - inf1) / (sup1 - inf1)
+  f inf1 sup1 inf2 sup2 t = (1 - ((t - inf1) / (sup1 - inf1))) * inf2 + ((t - inf1) / (sup1 - inf1)) * sup2
 {-# INLINE transform #-}
 
 -- | Linearly interpolate between the endpoints of an interval.

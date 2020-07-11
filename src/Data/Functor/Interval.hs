@@ -38,8 +38,6 @@ module Data.Functor.Interval
 , isProperSubintervalOf
 , isProperSuperintervalOf
 , intersects
-, before
-, after
   -- * Semigroups
 , Union(..)
 , union
@@ -315,11 +313,6 @@ intersects :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a
 intersects a b = isValid (intersection a b)
 
 
-before, after :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
-before a b = inf a `lte` sup b
-after  a b = sup a `lt`  sup b
-
-
 -- Semigroups
 
 newtype Union f a = Union { getUnion :: Interval f a }
@@ -349,10 +342,7 @@ intersection = coerce ((<>) :: Intersection f a -> Intersection f a -> Intersect
 liftRelation :: (Applicative f, Foldable f) => (a -> b -> Bool) -> f a -> f b -> Bool
 liftRelation rel a b = and (liftA2 rel a b)
 
-infix 4 `lt`, `lte`, `gte`
-
-lt :: (Applicative f, Foldable f, Ord a) => f a -> f a -> Bool
-lt = liftRelation (<)
+infix 4 `lte`, `gte`
 
 lte :: (Applicative f, Foldable f, Ord a) => f a -> f a -> Bool
 lte = liftRelation (<=)

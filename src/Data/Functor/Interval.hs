@@ -206,6 +206,7 @@ point p = Interval p p
 diameter :: (Applicative f, Num a) => Interval f a -> f a
 diameter = liftI (fmap abs . flip (-))
 
+-- | Lift a function over the coordinates in each dimension of @f@.
 liftI :: Applicative f => (a -> a -> b) -> Interval f a -> f b
 liftI f i = liftA2 f (inf i) (sup i)
 

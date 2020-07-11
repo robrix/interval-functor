@@ -326,6 +326,9 @@ transform i1 i2 x = uncurryI (\ inf1 sup1 -> uncurryI (\ inf2 sup2 -> liftA2 f i
 -- @
 -- lerp 1 = sup
 -- @
+-- @
+-- lerp t i = fromUnit i (pure t)
+-- @
 lerp :: (Applicative f, Num a) => a -> Interval f a -> f a
 lerp t = liftI (\ inf sup -> (1 - t) * inf + t * sup)
 {-# INLINE lerp #-}

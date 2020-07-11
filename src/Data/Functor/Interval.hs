@@ -284,7 +284,7 @@ mapInterval f = uncurryI (Interval `on` f)
 -- mapInterval f = runIdentity . traverseInterval (Identity . f)
 -- @
 traverseInterval :: Applicative m => (f a -> m (g b)) -> Interval f a -> m (Interval g b)
-traverseInterval f i = Interval <$> f (inf i) <*> f (sup i)
+traverseInterval f = uncurryI (liftA2 Interval `on` f)
 
 
 -- Predicates

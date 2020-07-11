@@ -248,6 +248,7 @@ liftI f = uncurryI (liftA2 f)
 -- [Identity 0, Identity 1]
 enum :: Enum (f a) => Interval f a -> [f a]
 enum = uncurryI enumFromTo
+{-# INLINE enum #-}
 
 -- | Enumerate the coordinates in @a@ between the interval’s endpoints along each dimension of @f@.
 --
@@ -255,6 +256,7 @@ enum = uncurryI enumFromTo
 -- V2 [1] [2, 3]
 liftEnum :: (Applicative f, Enum a) => Interval f a -> f [a]
 liftEnum = liftI enumFromTo
+{-# INLINE liftEnum #-}
 
 
 -- Conversions

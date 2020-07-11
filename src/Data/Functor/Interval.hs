@@ -37,12 +37,6 @@ module Data.Functor.Interval
 , Intersection(..)
 , intersection
 , intersects
-  -- * Comparisons
-, liftRelation
-, lt
-, lte
-, gt
-, gte
 ) where
 
 import Control.Applicative (liftA2)

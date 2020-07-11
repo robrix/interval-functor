@@ -225,6 +225,11 @@ wrap i x = liftI (\ inf sup x -> ((x + sup) `mod'` (sup - inf)) + inf) i <*> x
 -- Traversals
 
 -- | Map and fold over an interval’s endpoints.
+--
+-- Where 'foldMap' only folds over the individual coordinates, 'foldMapInterval' can interpret the structure of the space as well.
+--
+-- >>> foldMapInterval (\ p -> [p]) (Interval (V2 1 2) (V2 3 4))
+-- [V2 1 2, V2 3 4]
 foldMapInterval :: Semigroup s => (f a -> s) -> Interval f a -> s
 foldMapInterval f i = f (inf i) <> f (sup i)
 

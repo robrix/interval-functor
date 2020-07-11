@@ -50,6 +50,7 @@ import Control.Applicative (liftA2)
 import Control.Monad.Trans.Class
 import Data.Coerce (coerce)
 import Data.Fixed (mod')
+import Data.Function (on)
 import Data.Semigroup
 import GHC.Generics (Generic)
 
@@ -248,7 +249,7 @@ wrap i x = liftI (\ inf sup x -> ((x + sup) `mod'` (sup - inf)) + inf) i <*> x
 -- foldMap f = foldMapInterval (foldMap f)
 -- @
 foldMapInterval :: Semigroup s => (f a -> s) -> Interval f a -> s
-foldMapInterval f i = f (inf i) <> f (sup i)
+foldMapInterval f = uncurryI ((<>) `on` f)
 
 -- | Map over an interval’s endpoints.
 --

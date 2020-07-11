@@ -24,6 +24,7 @@ module Data.Functor.Interval
 , ranges
 , wrap
 , imap
+  -- * Predicates
 , member
 , isValid
 , isPoint
@@ -212,6 +213,8 @@ wrap i x = liftI (\ inf sup x -> ((x + sup) `mod'` (sup - inf)) + inf) i <*> x
 imap :: (f a -> g b) -> Interval f a -> Interval g b
 imap f i = Interval (f (inf i)) (f (sup i))
 
+
+-- Predicates
 
 member :: (Applicative f, Foldable f, Ord a) => f a -> Interval f a -> Bool
 member = isSubintervalOf . point

@@ -256,16 +256,13 @@ intersects a b = isValid (intersection a b)
 liftRelation :: (Applicative f, Foldable f) => (a -> b -> Bool) -> f a -> f b -> Bool
 liftRelation rel a b = and (liftA2 rel a b)
 
-infix 4 `lt`, `lte`, `gt`, `gte`
+infix 4 `lt`, `lte`, `gte`
 
 lt :: (Applicative f, Foldable f, Ord a) => f a -> f a -> Bool
 lt = liftRelation (<)
 
 lte :: (Applicative f, Foldable f, Ord a) => f a -> f a -> Bool
 lte = liftRelation (<=)
-
-gt :: (Applicative f, Foldable f, Ord a) => f a -> f a -> Bool
-gt = liftRelation (>)
 
 gte :: (Applicative f, Foldable f, Ord a) => f a -> f a -> Bool
 gte = liftRelation (>=)

@@ -260,6 +260,7 @@ foldMapInterval f i = f (inf i) <> f (sup i)
 mapInterval :: (f a -> g b) -> Interval f a -> Interval g b
 mapInterval f i = Interval (f (inf i)) (f (sup i))
 
+-- | Traverse over an interval’s endpoints.
 traverseInterval :: Applicative m => (f a -> m (g b)) -> Interval f a -> m (Interval g b)
 traverseInterval f i = Interval <$> f (inf i) <*> f (sup i)
 

@@ -201,6 +201,8 @@ point p = Interval p p
 -- Eliminators
 
 -- | Compute the diameter of an interval, defined as the absolute difference between the endpoints.
+--
+-- Note that the diameter of closed point intervals is zero, so this is not the interval’s /cardinality/.
 diameter :: (Applicative f, Num a) => Interval f a -> f a
 diameter = liftI (fmap abs . flip (-))
 

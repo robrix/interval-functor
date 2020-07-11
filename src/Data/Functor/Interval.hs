@@ -207,6 +207,9 @@ diameter :: (Applicative f, Num a) => Interval f a -> f a
 diameter = liftI (fmap abs . flip (-))
 
 -- | Lift a function over the coordinates in each dimension of @f@.
+--
+-- >>> liftI (+) (Interval (V2 1 2) (V2 3 4))
+-- V2 4 6
 liftI :: Applicative f => (a -> a -> b) -> Interval f a -> f b
 liftI f i = liftA2 f (inf i) (sup i)
 

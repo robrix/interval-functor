@@ -17,8 +17,8 @@ module Data.Functor.Interval
 , point
 , imap
   -- * Eliminators
-, liftI
 , size
+, liftI
 , range
 , ranges
 , toUnit
@@ -200,11 +200,11 @@ imap f i = Interval (f (inf i)) (f (sup i))
 
 -- Eliminators
 
-liftI :: Applicative f => (a -> a -> b) -> Interval f a -> f b
-liftI f i = liftA2 f (inf i) (sup i)
-
 size :: (Applicative f, Num a) => Interval f a -> f a
 size = liftI (flip (-))
+
+liftI :: Applicative f => (a -> a -> b) -> Interval f a -> f b
+liftI f i = liftA2 f (inf i) (sup i)
 
 
 range :: Enum (f a) => Interval f a -> [f a]

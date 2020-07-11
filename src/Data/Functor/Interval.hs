@@ -233,6 +233,9 @@ enum :: Enum (f a) => Interval f a -> [f a]
 enum = uncurryI enumFromTo
 
 -- | Enumerate the coordinates in @a@ between the interval’s endpoints along each dimension of @f@.
+--
+-- >>> liftEnum (Interval (V2 1 2) (V2 1 3))
+-- V2 [1] [2, 3]
 liftEnum :: (Applicative f, Enum a) => Interval f a -> f [a]
 liftEnum = liftI enumFromTo
 

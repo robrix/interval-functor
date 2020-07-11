@@ -374,6 +374,7 @@ intersects a b = isValid (intersection a b)
 
 -- Semigroups
 
+-- | 'Interval's form a 'Semigroup' under the union.
 newtype Union f a = Union { getUnion :: Interval f a }
   deriving (Applicative, Eq, Foldable, Functor, Monad, Ord, Show, Traversable)
 

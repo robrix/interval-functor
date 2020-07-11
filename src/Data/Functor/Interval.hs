@@ -188,6 +188,11 @@ point p = Interval p p
 
 
 -- | Map over an interval’s endpoints.
+--
+-- Where 'fmap' only maps over the individual coordinates, 'imap' can change the space as well.
+--
+-- >>> imap (\ (V2 x y) -> V3 x y 0) (Interval (V2 1 2) (V2 3 4))
+-- V3 1 2 0...V3 3 4 0
 imap :: (f a -> g b) -> Interval f a -> Interval g b
 imap f i = Interval (f (inf i)) (f (sup i))
 

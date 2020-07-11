@@ -17,6 +17,7 @@ module Data.Functor.Interval
 , point
   -- * Eliminators
 , diameter
+, uncurryI
 , liftI
   -- * Enumerations
 , range
@@ -204,6 +205,9 @@ point p = Interval p p
 -- Note that the diameter of closed point intervals is zero, so this is not the interval’s /cardinality/.
 diameter :: (Applicative f, Num a) => Interval f a -> f a
 diameter = liftI (fmap abs . flip (-))
+
+uncurryI :: (f a -> f a -> b) -> Interval f a -> b
+uncurryI f i = f (inf i) (sup i)
 
 -- | Lift a function over the coordinates in each dimension of @f@.
 --

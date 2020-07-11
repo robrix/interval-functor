@@ -188,7 +188,7 @@ tests = map checkParallel
   ]
   where
   gp = Gen.int (Range.linear 0 100)
-  gf = Gen.float (Range.linearFrac 0 100)
+  gf = Gen.realFrac_ (Range.linearFrac 0 (100 :: Rational))
   gi = interval gp
 
 

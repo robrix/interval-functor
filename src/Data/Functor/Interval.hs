@@ -262,6 +262,7 @@ fromUnit i x = liftI (\ inf sup x ->  x        * (sup - inf)  + inf) i <*> x
 lerp :: (Applicative f, Num a) => a -> Interval f a -> f a
 lerp t = liftI (\ inf sup -> (1 - t) * inf + t * sup)
 
+-- | Clamp a point in @f@ to the given interval, wrapping out-of-bounds values around.
 wrap :: (Applicative f, Real a) => Interval f a -> f a -> f a
 wrap i x = liftI (\ inf sup x -> ((x + sup) `mod'` (sup - inf)) + inf) i <*> x
 

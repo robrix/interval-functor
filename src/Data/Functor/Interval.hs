@@ -36,6 +36,7 @@ module Data.Functor.Interval
 , intersects
 , before
 , after
+  -- * Semigroups
 , Union(..)
 , union
 , Intersection(..)
@@ -257,6 +258,8 @@ before, after :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval 
 before a b = inf a `lte` sup b
 after  a b = sup a `lt`  sup b
 
+
+-- Semigroups
 
 newtype Union f a = Union { getUnion :: Interval f a }
   deriving (Applicative, Eq, Foldable, Functor, Monad, Ord, Show, Traversable)

@@ -24,6 +24,12 @@ tests = map checkParallel
       member p (point p :: Interval Identity Int) === True
     ]
 
+  , Group "lerp"
+    [ (,) "infimum" $ property $ do
+      i <- forAll gi
+      lerp 0 i === inf i
+    ]
+
   , Group "isSubintervalOf"
     [ (,) "reflexivity" $ property $ do
       i <- forAll gi

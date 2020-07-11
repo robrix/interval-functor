@@ -44,6 +44,10 @@ tests = map checkParallel
     , (,) "supremum" $ property $ do
       i <- forAll (interval gf)
       fromUnit i 1 === sup i
+    , (,) "inverse" $ property $ do
+      i <- forAll (interval gf) >>= forAll . properSuperinterval
+      p <- pure <$> forAll gf
+      fromUnit i (toUnit i p) === p
     ]
 
   , Group "lerp"

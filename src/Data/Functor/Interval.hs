@@ -408,12 +408,15 @@ intersection = coerce ((<>) :: Intersection f a -> Intersection f a -> Intersect
 
 liftRelation :: (Applicative f, Foldable f) => (a -> b -> Bool) -> f a -> f b -> Bool
 liftRelation rel a b = and (liftA2 rel a b)
+{-# INLINE liftRelation #-}
 
 infix 4 `lte`, `gte`
 
 lte, gte :: (Applicative f, Foldable f, Ord a) => f a -> f a -> Bool
 lte = liftRelation (<=)
+{-# INLINE lte #-}
 gte = liftRelation (>=)
+{-# INLINE gte #-}
 
 
 type Lens' s a = forall f . Functor f => (a -> f a) -> (s -> f s)

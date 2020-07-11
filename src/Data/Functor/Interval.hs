@@ -277,6 +277,9 @@ fromUnit i x = liftI (\ inf sup x ->  x        * (sup - inf)  + inf) i <*> x
 -- lerp 0 = inf
 -- @
 -- @
+-- lerp 0.5 = midpoint
+-- @
+-- @
 -- lerp 1 = sup
 -- @
 lerp :: (Applicative f, Num a) => a -> Interval f a -> f a

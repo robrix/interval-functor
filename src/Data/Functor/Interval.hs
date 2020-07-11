@@ -226,6 +226,9 @@ liftI f = uncurryI (liftA2 f)
 -- Enumerations
 
 -- | Enumerate the points in @f@ between the interval’s endpoints.
+--
+-- >>> enum (0...1 :: Interval Identity Int)
+-- [Identity 0, Identity 1]
 enum :: Enum (f a) => Interval f a -> [f a]
 enum = uncurryI enumFromTo
 

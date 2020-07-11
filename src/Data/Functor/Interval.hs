@@ -26,6 +26,7 @@ module Data.Functor.Interval
 , member
 , isValid
 , isPoint
+  -- * Relations
 , isSubintervalOf
 , isSuperintervalOf
 , isProperSubintervalOf
@@ -206,6 +207,8 @@ isValid i = inf i `lte` sup i
 isPoint :: (Applicative f, Foldable f, Eq a) => Interval f a -> Bool
 isPoint = and . liftI (==)
 
+
+-- Relations
 
 isSubintervalOf :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
 isSubintervalOf a b = inf a `gte` inf b && sup a `lte` sup b

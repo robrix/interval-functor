@@ -59,6 +59,10 @@ tests = map checkParallel
       i <- forAll (interval gf) >>= forAll . properSuperinterval
       j <- forAll (interval gf) >>= forAll . properSuperinterval
       transform i j (midpoint i) === midpoint j
+    , (,) "supremum" $ property $ do
+      i <- forAll (interval gf) >>= forAll . properSuperinterval
+      j <- forAll (interval gf) >>= forAll . properSuperinterval
+      transform i j (sup i) === sup j
     , (,) "identity" $ property $ do
       i <- forAll (interval gf) >>= forAll . properSuperinterval
       p <- pure <$> forAll gf

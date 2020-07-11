@@ -107,7 +107,7 @@ tests = map checkParallel
       wrap i (midpoint i) === midpoint i
     , (,) "supremum" $ property $ do
       i <- forAll (interval gf) >>= forAll . properSuperinterval
-      wrap i (sup i) === sup i
+      wrap i (sup i) === inf i
     ]
 
   , Group "member"

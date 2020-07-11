@@ -347,7 +347,7 @@ lerp t = liftI (\ inf sup -> (1 - t) * inf + t * sup)
 -- wrap i (midpoint i) = midpoint i
 -- @
 -- @
--- wrap i (sup i) = sup i
+-- wrap i (sup i) = inf i
 -- @
 wrap :: (Applicative f, Real a) => Interval f a -> f a -> f a
 wrap i x = liftI (\ inf sup x -> ((x - sup) `mod'` (sup - inf)) + inf) i <*> x

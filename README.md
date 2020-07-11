@@ -35,3 +35,5 @@ Once the repl has loaded, you can run the tests with `:main`.
 ```
 λ :main
 ```
+
+Configuration exists for `ghcide`, which can be integrated into many editors.

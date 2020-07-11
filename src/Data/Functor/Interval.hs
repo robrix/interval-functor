@@ -160,6 +160,7 @@ sup_ = lens sup $ \ i sup -> i{ sup }
 
 -- Constructors
 
+-- | Construct a square interval in @f@ dimensions from the given endpoints.
 (...) :: Applicative f => a -> a -> Interval f a
 inf...sup = Interval (pure inf) (pure sup)
 

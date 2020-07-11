@@ -6,7 +6,7 @@
 {-# LANGUAGE NamedFieldPuns #-}
 {-# LANGUAGE RankNTypes #-}
 {-# LANGUAGE ScopedTypeVariables #-}
--- | Intervals in a space given by an arbitrary functor.
+-- | Closed intervals in a space given by an arbitrary functor.
 module Data.Functor.Interval
 ( Interval(..)
   -- * Lenses

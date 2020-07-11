@@ -263,6 +263,11 @@ lerp :: (Applicative f, Num a) => a -> Interval f a -> f a
 lerp t = liftI (\ inf sup -> (1 - t) * inf + t * sup)
 
 -- | Clamp a point in @f@ to the given interval, wrapping out-of-bounds values around.
+--
+-- e.g. to wrap angles in radians to the interval [-pi, pi]:
+--
+-- >>> wrap (-pi...pi) (pi + x)
+-- Identity (-pi + x)
 wrap :: (Applicative f, Real a) => Interval f a -> f a -> f a
 wrap i x = liftI (\ inf sup x -> ((x + sup) `mod'` (sup - inf)) + inf) i <*> x
 

@@ -28,6 +28,9 @@ tests = map checkParallel
     [ (,) "infimum" $ property $ do
       i <- forAll (interval gf) >>= forAll . properSuperinterval
       toUnit i (inf i) === 0
+    , (,) "supremum" $ property $ do
+      i <- forAll (interval gf) >>= forAll . properSuperinterval
+      toUnit i (sup i) === 1
     ]
 
   , Group "lerp"

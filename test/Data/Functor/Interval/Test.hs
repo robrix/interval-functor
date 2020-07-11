@@ -92,6 +92,10 @@ tests = map checkParallel
     , (,) "midpoint" $ property $ do
       i <- forAll (interval gf)
       lerp 0.5 i === midpoint i
+    , (,) "fromUnit" $ property $ do
+      i <- forAll (interval gf)
+      t <- forAll gf
+      lerp t i === fromUnit i (pure t)
     ]
 
   , Group "member"

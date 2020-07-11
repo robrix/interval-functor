@@ -429,6 +429,10 @@ isPoint = and . liftI (==)
 -- Relations
 
 -- | Test whether one interval is a subinterval of another.
+--
+-- @
+-- i `isSubintervalOf` i = True
+-- @
 isSubintervalOf :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
 isSubintervalOf a b = inf a `gte` inf b && sup a `lte` sup b
 {-# INLINE isSubintervalOf #-}

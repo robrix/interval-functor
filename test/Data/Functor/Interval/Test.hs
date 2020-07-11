@@ -36,10 +36,10 @@ tests = map checkParallel
   , Group "member"
     [ (,) "infimum" $ property $ do
       i <- forAll gi
-      assert $ member (inf i) i
+      assert $ inf i `member` i
     , (,) "supremum" $ property $ do
       i <- forAll gi
-      assert $ member (sup i) i
+      assert $ sup i `member` i
     ]
 
   , Group "isSubintervalOf"

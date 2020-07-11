@@ -281,6 +281,16 @@ fromUnit i x = liftI (\ inf sup t -> (1 - t) * inf + t * sup) i <*> x
 
 
 -- | Transform a point linearly between the subspaces described by intervals.
+--
+-- @
+-- transform i i = id
+-- @
+-- @
+-- transform (0...1) = fromUnit
+-- @
+-- @
+-- (`transform` 0...1) = toUnit
+-- @
 transform :: (Applicative f, Fractional a) => Interval f a -> Interval f a -> f a -> f a
 transform i1 i2 x = uncurryI (\ inf1 sup1 -> uncurryI (\ inf2 sup2 -> liftA2 f inf1 sup1 <*> inf2 <*> sup2 <*> x) i2) i1
   where

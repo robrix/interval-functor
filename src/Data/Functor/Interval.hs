@@ -367,6 +367,7 @@ isProperSuperintervalOf :: (Applicative f, Foldable f, Ord a) => Interval f a ->
 isProperSuperintervalOf = flip isProperSubintervalOf
 
 
+-- | Test whether two intervals intersect.
 intersects :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
 intersects a b = isValid (intersection a b)
 

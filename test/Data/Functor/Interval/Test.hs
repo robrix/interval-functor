@@ -42,6 +42,12 @@ tests = map checkParallel
       assert $ sup i `member` i
     ]
 
+  , Group "isValid"
+    [ (,) "point" $ property $ do
+      p <- pure <$> forAll gp
+      assert $ isValid (point p :: Interval Identity Int)
+    ]
+
   , Group "isSubintervalOf"
     [ (,) "reflexivity" $ property $ do
       i <- forAll gi

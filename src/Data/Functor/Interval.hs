@@ -200,9 +200,9 @@ point p = Interval p p
 
 -- Eliminators
 
--- | Compute the diameter of an interval, defined as its supremum minus its infimum.
+-- | Compute the diameter of an interval, defined as the absolute difference between the endpoints.
 diameter :: (Applicative f, Num a) => Interval f a -> f a
-diameter = liftI (flip (-))
+diameter = liftI (fmap abs . flip (-))
 
 liftI :: Applicative f => (a -> a -> b) -> Interval f a -> f b
 liftI f i = liftA2 f (inf i) (sup i)

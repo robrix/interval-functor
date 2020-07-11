@@ -24,6 +24,7 @@ module Data.Functor.Interval
 , fromUnit
 , wrap
   -- * Traversals
+, foldMapInterval
 , mapInterval
   -- * Predicates
 , member
@@ -222,6 +223,9 @@ wrap i x = liftI (\ inf sup x -> ((x + sup) `mod'` (sup - inf)) + inf) i <*> x
 
 
 -- Traversals
+
+foldMapInterval :: Semigroup s => (f a -> s) -> Interval f a -> s
+foldMapInterval f i = f (inf i) <> f (sup i)
 
 -- | Map over an interval’s endpoints.
 --

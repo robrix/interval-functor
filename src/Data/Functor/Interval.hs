@@ -311,6 +311,7 @@ wrap i x = liftI (\ inf sup x -> ((x + sup) `mod'` (sup - inf)) + inf) i <*> x
 -- @
 foldMapInterval :: Semigroup s => (f a -> s) -> Interval f a -> s
 foldMapInterval f = uncurryI ((<>) `on` f)
+{-# INLINE foldMapInterval #-}
 
 -- | Map over an interval’s endpoints.
 --
@@ -324,6 +325,7 @@ foldMapInterval f = uncurryI ((<>) `on` f)
 -- @
 mapInterval :: (f a -> g b) -> Interval f a -> Interval g b
 mapInterval f = uncurryI (Interval `on` f)
+{-# INLINE mapInterval #-}
 
 -- | Traverse over an interval’s endpoints.
 --
@@ -346,6 +348,7 @@ mapInterval f = uncurryI (Interval `on` f)
 -- @
 traverseInterval :: Applicative m => (f a -> m (g b)) -> Interval f a -> m (Interval g b)
 traverseInterval f = uncurryI (liftA2 Interval `on` f)
+{-# INLINE traverseInterval #-}
 
 
 -- Predicates

@@ -20,7 +20,7 @@ module Data.Functor.Interval
 , uncurryI
 , liftI
   -- * Enumerations
-, range
+, enumI
 , ranges
   -- * Conversions
 , toUnit
@@ -226,8 +226,8 @@ liftI f = uncurryI (liftA2 f)
 -- Enumerations
 
 -- | Enumerate the points in @f@ between the interval’s endpoints.
-range :: Enum (f a) => Interval f a -> [f a]
-range = uncurryI enumFromTo
+enumI :: Enum (f a) => Interval f a -> [f a]
+enumI = uncurryI enumFromTo
 
 ranges :: (Applicative f, Enum a) => Interval f a -> f [a]
 ranges = liftI enumFromTo

@@ -18,6 +18,7 @@ module Data.Functor.Interval
   -- * Eliminators
 , diameter
 , liftI
+  -- * Enumerations
 , range
 , ranges
 , toUnit
@@ -213,6 +214,8 @@ diameter = liftI (fmap abs . flip (-))
 liftI :: Applicative f => (a -> a -> b) -> Interval f a -> f b
 liftI f i = liftA2 f (inf i) (sup i)
 
+
+-- Enumerations
 
 range :: Enum (f a) => Interval f a -> [f a]
 range = enumFromTo . inf <*> sup

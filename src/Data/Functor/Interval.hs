@@ -251,6 +251,7 @@ toUnit   i x = liftI (\ inf sup x -> (x - inf) / (sup - inf))        i <*> x
 -- | Linearly transform a point in @f@ from the unit interval to an interval of @f@.
 fromUnit i x = liftI (\ inf sup x ->  x        * (sup - inf)  + inf) i <*> x
 
+-- | Linearly interpolate between the endpoints of an interval.
 lerp :: (Applicative f, Num a) => a -> Interval f a -> f a
 lerp t = liftI (\ inf sup -> t * (sup - inf) + inf)
 

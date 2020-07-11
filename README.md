@@ -26,6 +26,12 @@ unitCube = (-1)...1
 Development currently assumes a Mac with `ghc` 8.10 & `cabal` 3.0. You can install them directly, or use [`ghcup`](https://www.haskell.org/ghcup/). It should be possible to develop on other platforms and compilers, but I probably haven’t tried them myself.
 
 ```bash
-cabal build # build
-cabal run test # run the tests
+cabal build --enable-tests # initial build
+script/repl # load the library and tests in ghci
+```
+
+Once the repl has loaded, you can run the tests with `:main`.
+
+```
+λ :main
 ```

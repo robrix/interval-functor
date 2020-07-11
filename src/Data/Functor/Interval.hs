@@ -343,9 +343,6 @@ lerp t = liftI (\ inf sup -> (1 - t) * inf + t * sup)
 -- @
 -- wrap i (lerp t i) = lerp (snd (properFraction t)) i
 -- @
--- @
--- wrap i (sup i) = inf i
--- @
 wrap :: (Applicative f, Real a) => Interval f a -> f a -> f a
 wrap i x = liftI (\ inf sup x -> ((x - sup) `mod'` (sup - inf)) + inf) i <*> x
 {-# INLINE wrap #-}

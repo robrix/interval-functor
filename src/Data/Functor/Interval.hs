@@ -206,6 +206,7 @@ point p = Interval p p
 diameter :: (Applicative f, Num a) => Interval f a -> f a
 diameter = liftI (fmap abs . flip (-))
 
+-- | Apply a function to the endpoints of an interval.
 uncurryI :: (f a -> f a -> b) -> Interval f a -> b
 uncurryI f i = f (inf i) (sup i)
 

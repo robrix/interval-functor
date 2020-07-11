@@ -22,6 +22,7 @@ module Data.Functor.Interval
   -- * Enumerations
 , range
 , ranges
+  -- * Conversions
 , toUnit
 , fromUnit
 , wrap
@@ -230,6 +231,8 @@ range = uncurryI enumFromTo
 ranges :: (Applicative f, Enum a) => Interval f a -> f [a]
 ranges = liftI enumFromTo
 
+
+-- Conversions
 
 toUnit, fromUnit :: (Applicative f, Fractional a) => Interval f a -> f a -> f a
 toUnit   i x = liftI (\ inf sup x -> (x - inf) / (sup - inf))        i <*> x

@@ -380,7 +380,9 @@ newtype Union f a = Union { getUnion :: Interval f a }
 
 instance (Applicative f, Ord a) => Semigroup (Union f a) where
   Union i1 <> Union i2 = Union ((min...max) <*> i1 <*> i2)
+  {-# INLINE (<>) #-}
   stimes = stimesIdempotent
+  {-# INLINE stimes #-}
 
 -- | Take the union of two intervals.
 --

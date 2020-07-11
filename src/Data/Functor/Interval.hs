@@ -386,6 +386,7 @@ union :: forall f a . (Applicative f, Ord a) => Interval f a -> Interval f a -> 
 union = coerce ((<>) :: Union f a -> Union f a -> Union f a)
 
 
+-- | 'Interval's form a 'Semigroup' under intersection.
 newtype Intersection f a = Intersection { getIntersection :: Interval f a }
   deriving (Applicative, Eq, Foldable, Functor, Monad, Ord, Show, Traversable)
 

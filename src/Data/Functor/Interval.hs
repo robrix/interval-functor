@@ -183,11 +183,9 @@ sup_ = lens sup $ \ i sup -> i{ sup }
 
 -- | Construct a square interval in @f@ dimensions from the given coordinates.
 --
--- >>> import Data.Functor.Identity
 -- >>> 0...1 :: Interval Identity Int
 -- Identity 0...Identity 1
 --
--- >>> import Linear.V2
 -- >>> 0...1 :: Interval V2 Int
 -- V2 0 0...V2 1 1
 (...) :: Applicative f => a -> a -> Interval f a
@@ -198,7 +196,6 @@ infix 3 ...
 
 -- | Construct a point (or /degenerate/) interval from the given endpoint.
 --
--- >>> import Linear.V2
 -- >>> point (V2 0 1)
 -- V2 0 1...V2 0 1
 point :: f a -> Interval f a

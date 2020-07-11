@@ -262,7 +262,7 @@ foldMapInterval f = uncurryI ((<>) `on` f)
 -- fmap f = mapInterval (fmap f)
 -- @
 mapInterval :: (f a -> g b) -> Interval f a -> Interval g b
-mapInterval f i = Interval (f (inf i)) (f (sup i))
+mapInterval f = uncurryI (Interval `on` f)
 
 -- | Traverse over an interval’s endpoints.
 --

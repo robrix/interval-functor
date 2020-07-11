@@ -35,8 +35,8 @@ tests = map checkParallel
     , (,) "offset" $ property $ do
       i <- forAll gi
       d <- forAll nonZeroDelta
-      assert . not $ i `isSubintervalOf` imap (+ d) i
-      assert . not $ imap (+ d) i `isSubintervalOf` i
+      assert . not $ i `isSubintervalOf` mapInterval (+ d) i
+      assert . not $ mapInterval (+ d) i `isSubintervalOf` i
     ]
 
   , Group "isSuperintervalOf"
@@ -50,8 +50,8 @@ tests = map checkParallel
     , (,) "offset" $ property $ do
       i <- forAll gi
       d <- forAll nonZeroDelta
-      assert . not $ i `isSuperintervalOf` imap (+ d) i
-      assert . not $ imap (+ d) i `isSuperintervalOf` i
+      assert . not $ i `isSuperintervalOf` mapInterval (+ d) i
+      assert . not $ mapInterval (+ d) i `isSuperintervalOf` i
     ]
 
   , Group "isProperSubintervalOf"
@@ -64,8 +64,8 @@ tests = map checkParallel
     , (,) "offset" $ property $ do
       i <- forAll gi
       d <- forAll nonZeroDelta
-      assert . not $ i `isProperSubintervalOf` imap (+ d) i
-      assert . not $ imap (+ d) i `isProperSubintervalOf` i
+      assert . not $ i `isProperSubintervalOf` mapInterval (+ d) i
+      assert . not $ mapInterval (+ d) i `isProperSubintervalOf` i
     ]
 
   , Group "isProperSuperintervalOf"
@@ -78,8 +78,8 @@ tests = map checkParallel
     , (,) "offset" $ property $ do
       i <- forAll gi
       d <- forAll nonZeroDelta
-      assert . not $ i `isProperSuperintervalOf` imap (+ d) i
-      assert . not $ imap (+ d) i `isProperSuperintervalOf` i
+      assert . not $ i `isProperSuperintervalOf` mapInterval (+ d) i
+      assert . not $ mapInterval (+ d) i `isProperSuperintervalOf` i
     ]
 
   , Group "union"

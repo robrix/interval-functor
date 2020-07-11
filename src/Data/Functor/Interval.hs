@@ -61,8 +61,8 @@ data Interval f a = Interval
   }
   deriving
     ( Eq
-    , Foldable -- ^ Folds over each coordinate of the endpoints.
-    , Functor  -- ^ Maps over each coordinate of the endpoints. See 'mapInterval' for mapping over the endpoints themselves.
+    , Foldable    -- ^ Folds over each coordinate of the endpoints.
+    , Functor     -- ^ Maps over each coordinate of the endpoints. See 'mapInterval' for mapping over the endpoints themselves.
     , Generic
     , Ord
     , Traversable -- ^ Traverses over each coordinate of the endpoints.

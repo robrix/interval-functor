@@ -191,6 +191,7 @@ sup_ = lens sup $ \ i sup -> i{ sup }
 -- V2 0 0...V2 1 1
 (...) :: Applicative f => a -> a -> Interval f a
 inf...sup = Interval (pure inf) (pure sup)
+{-# INLINE (...) #-}
 
 infix 3 ...
 
@@ -201,6 +202,7 @@ infix 3 ...
 -- V2 0 1...V2 0 1
 point :: f a -> Interval f a
 point p = Interval p p
+{-# INLINE point #-}
 
 
 -- Eliminators

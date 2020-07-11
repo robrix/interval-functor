@@ -74,6 +74,7 @@ data Interval f a = Interval
 
 instance Show (f a) => Show (Interval f a) where
   showsPrec p i = showParen (p > 3) $ showsPrec 4 (inf i) . showString "..." . showsPrec 4 (sup i)
+  {-# INLINE showsPrec #-}
 
 instance Applicative f => Applicative (Interval f) where
   pure = point . pure

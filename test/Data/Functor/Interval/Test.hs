@@ -24,6 +24,12 @@ tests = map checkParallel
       assert $ p `member` (point p :: Interval Identity Int)
     ]
 
+  , Group "toUnit"
+    [ (,) "infimum" $ property $ do
+      i <- forAll (interval gf) >>= forAll . properSuperinterval
+      toUnit i (inf i) === 0
+    ]
+
   , Group "lerp"
     [ (,) "infimum" $ property $ do
       i <- forAll gi
@@ -170,6 +176,7 @@ tests = map checkParallel
   ]
   where
   gp = Gen.int (Range.linear 0 100)
+  gf = Gen.float (Range.linearFrac 0 100)
   gi = interval gp
 
 

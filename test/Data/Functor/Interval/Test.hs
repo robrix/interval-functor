@@ -33,6 +33,12 @@ tests = map checkParallel
       toUnit i (sup i) === 1
     ]
 
+  , Group "fromUnit"
+    [ (,) "infimum" $ property $ do
+      i <- forAll (interval gf)
+      fromUnit i 0 === inf i
+    ]
+
   , Group "lerp"
     [ (,) "infimum" $ property $ do
       i <- forAll gi

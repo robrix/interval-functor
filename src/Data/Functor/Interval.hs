@@ -245,8 +245,8 @@ wrap i x = liftI (\ inf sup x -> ((x + sup) `mod'` (sup - inf)) + inf) i <*> x
 --
 -- Where 'foldMap' only folds over the individual coordinates, 'foldMapInterval' can interpret the structure of the space as well.
 --
--- >>> foldMapInterval (\ p -> [p]) (Interval (V2 1 2) (V2 3 4))
--- [V2 1 2, V2 3 4]
+-- >>> foldMapInterval (\ p -> [p]) (Interval a b)
+-- [a, b]
 --
 -- @
 -- foldMap f = foldMapInterval (foldMap f)

@@ -263,6 +263,12 @@ mapInterval f i = Interval (f (inf i)) (f (sup i))
 -- | Traverse over an interval’s endpoints.
 --
 -- Where 'traverse' only traverses over the individual coordinates, 'traverseInterval' can change the space as well.
+--
+-- >>> :t traverseInterval (\ (V2 x y) -> V3 x y)
+-- traverseInterval (\ (V2 x y) -> V3 x y) :: Interval V2 a -> a -> Interval V3 a
+--
+-- >>> traverseInterval (\ (V2 x y) -> V3 x y) (Interval (V2 1 2) (V2 3 4)) 0
+-- V3 1 2 0...V3 3 4 0
 traverseInterval :: Applicative m => (f a -> m (g b)) -> Interval f a -> m (Interval g b)
 traverseInterval f i = Interval <$> f (inf i) <*> f (sup i)
 

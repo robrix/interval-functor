@@ -212,6 +212,7 @@ point p = Interval p p
 -- Note that the diameter of closed point intervals is zero, so this is not the interval’s /cardinality/.
 diameter :: (Applicative f, Num a) => Interval f a -> f a
 diameter = liftI (fmap abs . flip (-))
+{-# INLINE diameter #-}
 
 -- | Compute the midpoint of an interval, halfway between the endpoints.
 --
@@ -220,6 +221,7 @@ diameter = liftI (fmap abs . flip (-))
 -- @
 midpoint :: (Applicative f, Fractional a) => Interval f a -> f a
 midpoint = lerp 0.5
+{-# INLINE midpoint #-}
 
 -- | Apply a function to the endpoints of an interval.
 --
@@ -227,6 +229,7 @@ midpoint = lerp 0.5
 -- (a, b)
 uncurryI :: (f a -> f a -> b) -> Interval f a -> b
 uncurryI f i = f (inf i) (sup i)
+{-# INLINE uncurryI #-}
 
 -- | Lift a function over the coordinates in each dimension of @f@.
 --
@@ -234,6 +237,7 @@ uncurryI f i = f (inf i) (sup i)
 -- V2 4 6
 liftI :: Applicative f => (a -> a -> b) -> Interval f a -> f b
 liftI f = uncurryI (liftA2 f)
+{-# INLINE liftI #-}
 
 
 -- Enumerations

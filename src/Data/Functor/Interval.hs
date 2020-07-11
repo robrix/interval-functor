@@ -269,6 +269,10 @@ mapInterval f i = Interval (f (inf i)) (f (sup i))
 --
 -- >>> traverseInterval (\ (V2 x y) -> V3 x y) (Interval (V2 1 2) (V2 3 4)) 0
 -- V3 1 2 0...V3 3 4 0
+--
+-- @
+-- traverse f = traverseInterval (traverse f)
+-- @
 traverseInterval :: Applicative m => (f a -> m (g b)) -> Interval f a -> m (Interval g b)
 traverseInterval f i = Interval <$> f (inf i) <*> f (sup i)
 

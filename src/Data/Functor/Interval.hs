@@ -261,6 +261,8 @@ mapInterval :: (f a -> g b) -> Interval f a -> Interval g b
 mapInterval f i = Interval (f (inf i)) (f (sup i))
 
 -- | Traverse over an interval’s endpoints.
+--
+-- Where 'traverse' only traverses over the individual coordinates, 'traverseInterval' can change the space as well.
 traverseInterval :: Applicative m => (f a -> m (g b)) -> Interval f a -> m (Interval g b)
 traverseInterval f i = Interval <$> f (inf i) <*> f (sup i)
 

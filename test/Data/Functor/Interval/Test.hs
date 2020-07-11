@@ -28,6 +28,9 @@ tests = map checkParallel
     [ (,) "infimum" $ property $ do
       i <- forAll gi
       lerp 0 i === inf i
+    , (,) "supremum" $ property $ do
+      i <- forAll gi
+      lerp 1 i === sup i
     ]
 
   , Group "isSubintervalOf"

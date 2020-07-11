@@ -17,7 +17,7 @@ module Data.Functor.Interval
 , point
 , imap
   -- * Eliminators
-, size
+, diameter
 , liftI
 , range
 , ranges
@@ -200,9 +200,9 @@ imap f i = Interval (f (inf i)) (f (sup i))
 
 -- Eliminators
 
--- | Compute the size of an interval, defined as its supremum minus its infimum.
-size :: (Applicative f, Num a) => Interval f a -> f a
-size = liftI (flip (-))
+-- | Compute the diameter of an interval, defined as its supremum minus its infimum.
+diameter :: (Applicative f, Num a) => Interval f a -> f a
+diameter = liftI (flip (-))
 
 liftI :: Applicative f => (a -> a -> b) -> Interval f a -> f b
 liftI f i = liftA2 f (inf i) (sup i)

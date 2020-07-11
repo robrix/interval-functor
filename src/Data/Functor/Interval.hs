@@ -350,15 +350,19 @@ isPoint = and . liftI (==)
 
 -- Relations
 
+-- | Test whether one interval is a subinterval of another.
 isSubintervalOf :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
 isSubintervalOf a b = inf a `gte` inf b && sup a `lte` sup b
 
+-- | Test whether one interval is a superinterval of another.
 isSuperintervalOf :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
 isSuperintervalOf = flip isSubintervalOf
 
+-- | Test whether one interval is a proper subinterval of another (i.e. a subinterval, but not equal).
 isProperSubintervalOf :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
 isProperSubintervalOf a b = isSubintervalOf a b && or (liftA2 (/=) a b)
 
+-- | Test whether one interval is a proper superinterval of another (i.e. a subinterval, but not equal).
 isProperSuperintervalOf :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
 isProperSuperintervalOf = flip isProperSubintervalOf
 

@@ -280,7 +280,7 @@ fromUnit i x = liftI (\ inf sup t -> (1 - t) * inf + t * sup) i <*> x
 {-# INLINE fromUnit #-}
 
 
--- | Transform a point linearly between the subspaces described by intervals.
+-- | Transform a point linearly between the subspaces described by non-point intervals.
 --
 -- @
 -- transform i i = id

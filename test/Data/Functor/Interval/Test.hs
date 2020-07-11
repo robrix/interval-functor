@@ -106,6 +106,12 @@ tests = map checkParallel
       assert . not $ mapInterval (+ d) i `isProperSuperintervalOf` i
     ]
 
+  , Group "intersects"
+    [ (,) "reflexivity" $ property $ do
+      i <- forAll gi
+      assert $ i `intersects` i
+    ]
+
   , Group "union"
     [ (,) "idempotence" $ property $ do
       i <- forAll gi

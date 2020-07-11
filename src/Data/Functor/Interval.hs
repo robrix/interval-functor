@@ -161,6 +161,14 @@ sup_ = lens sup $ \ i sup -> i{ sup }
 -- Constructors
 
 -- | Construct a square interval in @f@ dimensions from the given endpoints.
+--
+-- >>> import Data.Functor.Identity
+-- >>> 0...1 :: Interval Identity Int
+-- Identity 0...Identity 1
+--
+-- >>> import Linear.V2
+-- >>> 0...1 :: Interval V2 Int
+-- V2 0 0...V2 1 1
 (...) :: Applicative f => a -> a -> Interval f a
 inf...sup = Interval (pure inf) (pure sup)
 

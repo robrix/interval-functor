@@ -339,6 +339,7 @@ member :: (Applicative f, Foldable f, Ord a) => f a -> Interval f a -> Bool
 member = isSubintervalOf . point
 
 
+-- | Test an interval for validity, i.e. non-emptiness.
 isValid :: (Applicative f, Foldable f, Ord a) => Interval f a -> Bool
 isValid = uncurryI lte
 

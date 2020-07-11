@@ -243,6 +243,10 @@ foldMapInterval f i = f (inf i) <> f (sup i)
 --
 -- >>> mapInterval (\ (V2 x y) -> V3 x y 0) (Interval (V2 1 2) (V2 3 4))
 -- V3 1 2 0...V3 3 4 0
+--
+-- @
+-- fmap f = mapInterval (fmap f)
+-- @
 mapInterval :: (f a -> g b) -> Interval f a -> Interval g b
 mapInterval f i = Interval (f (inf i)) (f (sup i))
 

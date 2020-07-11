@@ -78,6 +78,7 @@ instance Monad f => Monad (Interval f) where
 
 instance MonadTrans Interval where
   lift = point
+  {-# INLINE lift #-}
 
 instance (Applicative f, Num a) => Num (Interval f a) where
   (+) = liftA2 (+)

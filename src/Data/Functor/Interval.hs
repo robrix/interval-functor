@@ -454,6 +454,9 @@ isProperSuperintervalOf = flip isProperSubintervalOf
 -- @
 -- i `intersects` i = True
 -- @
+-- @
+-- i `intersects` j = j `intersects` i
+-- @
 intersects :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
 intersects a b = isValid (intersection a b)
 {-# INLINE intersects #-}

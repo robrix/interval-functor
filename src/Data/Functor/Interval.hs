@@ -23,7 +23,7 @@ module Data.Functor.Interval
   -- * Enumerations
 , enum
 , liftEnum
-  -- * Conversions
+  -- * Transformations
 , toUnit
 , fromUnit
 , lerp
@@ -259,7 +259,7 @@ liftEnum = liftI enumFromTo
 {-# INLINE liftEnum #-}
 
 
--- Conversions
+-- Transformations
 
 toUnit, fromUnit :: (Applicative f, Fractional a) => Interval f a -> f a -> f a
 

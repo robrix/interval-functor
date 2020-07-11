@@ -402,6 +402,7 @@ instance (Applicative f, Ord a) => Semigroup (Intersection f a) where
 -- This is equivalent to the 'Semigroup' instance for 'Intersection', and is provided for clarity and convenience.
 intersection :: forall f a . (Applicative f, Ord a) => Interval f a -> Interval f a -> Interval f a
 intersection = coerce ((<>) :: Intersection f a -> Intersection f a -> Intersection f a)
+{-# INLINE intersection #-}
 
 
 -- Internal

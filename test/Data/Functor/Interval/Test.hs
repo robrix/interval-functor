@@ -98,6 +98,18 @@ tests = map checkParallel
       lerp t i === fromUnit i (pure t)
     ]
 
+  , Group "wrap"
+    [ (,) "infimum" $ property $ do
+      i <- forAll (interval gf) >>= forAll . properSuperinterval
+      wrap i (inf i) === inf i
+    , (,) "midpoint" $ property $ do
+      i <- forAll (interval gf) >>= forAll . properSuperinterval
+      wrap i (midpoint i) === midpoint i
+    , (,) "supremum" $ property $ do
+      i <- forAll (interval gf) >>= forAll . properSuperinterval
+      wrap i (sup i) === sup i
+    ]
+
   , Group "member"
     [ (,) "infimum" $ property $ do
       i <- forAll gi

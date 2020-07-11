@@ -9,7 +9,7 @@ module Data.Functor.Interval.Test
 , nonZeroDelta
 ) where
 
-import           Control.Monad (join, when)
+import           Control.Monad (join)
 import           Data.Function ((&))
 import           Data.Functor.Identity
 import           Data.Functor.Interval
@@ -197,9 +197,7 @@ prop_intersects_reflexivity = property $ do
 prop_intersects_symmetry = property $ do
   i <- forAll gi
   j <- forAll gi
-  when (i `intersects` j) $ do
-    label "intersecting"
-    assert $ j `intersects` i
+  i `intersects` j === j `intersects` i
 
 
 prop_union_idempotence = property $ do

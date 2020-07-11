@@ -224,6 +224,7 @@ wrap i x = liftI (\ inf sup x -> ((x + sup) `mod'` (sup - inf)) + inf) i <*> x
 
 -- Traversals
 
+-- | Map and fold over an interval’s endpoints.
 foldMapInterval :: Semigroup s => (f a -> s) -> Interval f a -> s
 foldMapInterval f i = f (inf i) <> f (sup i)
 

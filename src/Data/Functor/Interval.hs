@@ -26,6 +26,7 @@ module Data.Functor.Interval
   -- * Traversals
 , foldMapInterval
 , mapInterval
+, traverseInterval
   -- * Predicates
 , member
 , isValid
@@ -249,6 +250,9 @@ foldMapInterval f i = f (inf i) <> f (sup i)
 -- @
 mapInterval :: (f a -> g b) -> Interval f a -> Interval g b
 mapInterval f i = Interval (f (inf i)) (f (sup i))
+
+traverseInterval :: Applicative m => (f a -> m (g b)) -> Interval f a -> m (Interval g b)
+traverseInterval f i = Interval <$> f (inf i) <*> f (sup i)
 
 
 -- Predicates

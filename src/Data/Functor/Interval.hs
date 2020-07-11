@@ -74,6 +74,7 @@ instance Applicative f => Applicative (Interval f) where
 
 instance Monad f => Monad (Interval f) where
   m >>= f = Interval (inf m >>= inf . f) (sup m >>= sup . f)
+  {-# INLINE (>>=) #-}
 
 instance MonadTrans Interval where
   lift = point

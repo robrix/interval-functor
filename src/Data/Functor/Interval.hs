@@ -344,10 +344,8 @@ liftRelation rel a b = and (liftA2 rel a b)
 
 infix 4 `lte`, `gte`
 
-lte :: (Applicative f, Foldable f, Ord a) => f a -> f a -> Bool
+lte, gte :: (Applicative f, Foldable f, Ord a) => f a -> f a -> Bool
 lte = liftRelation (<=)
-
-gte :: (Applicative f, Foldable f, Ord a) => f a -> f a -> Bool
 gte = liftRelation (>=)
 
 

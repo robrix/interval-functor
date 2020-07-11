@@ -156,9 +156,11 @@ inf_, sup_ :: Lens' (Interval f a) (f a)
 
 -- | Access the infimum of an interval.
 inf_ = lens inf $ \ i inf -> i{ inf }
+{-# INLINE inf_ #-}
 
 -- | Access the supremum of an interval.
 sup_ = lens sup $ \ i sup -> i{ sup }
+{-# INLINE sup_ #-}
 
 
 -- Constructors

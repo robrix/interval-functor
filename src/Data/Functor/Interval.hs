@@ -200,6 +200,7 @@ imap f i = Interval (f (inf i)) (f (sup i))
 
 -- Eliminators
 
+-- | Compute the size of an interval, defined as its supremum minus its infimum.
 size :: (Applicative f, Num a) => Interval f a -> f a
 size = liftI (flip (-))
 

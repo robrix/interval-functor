@@ -56,7 +56,7 @@ import Data.Coerce (coerce)
 import Data.Fixed (mod')
 import Data.Function (on)
 import Data.Semigroup
-import GHC.Generics (Generic)
+import GHC.Generics (Generic, Generic1)
 
 -- | @f@-dimensional intervals with coordinates in @a@.
 data Interval f a = Interval
@@ -68,6 +68,7 @@ data Interval f a = Interval
     , Foldable    -- ^ Folds over each coordinate of the endpoints. See 'foldMapInterval' for folding over the endpoints themselves.
     , Functor     -- ^ Maps over each coordinate of the endpoints. See 'mapInterval' for mapping over the endpoints themselves.
     , Generic
+    , Generic1
     , Ord         -- ^ The ordering is defined by @f@, with the infima taking precedence over the suprema.
     , Traversable -- ^ Traverses over each coordinate of the endpoints. See 'traverseInterval' for traversing over the endpoints themselves.
     )

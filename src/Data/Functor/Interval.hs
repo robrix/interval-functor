@@ -215,7 +215,7 @@ uncurryI f i = f (inf i) (sup i)
 -- >>> liftI (+) (Interval (V2 1 2) (V2 3 4))
 -- V2 4 6
 liftI :: Applicative f => (a -> a -> b) -> Interval f a -> f b
-liftI f i = liftA2 f (inf i) (sup i)
+liftI f = uncurryI (liftA2 f)
 
 
 -- Enumerations

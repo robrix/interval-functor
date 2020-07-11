@@ -49,8 +49,8 @@ import GHC.Generics (Generic)
 
 -- | @f@-dimensional intervals with coordinates in @a@.
 data Interval f a = Interval
-  { inf :: !(f a)
-  , sup :: !(f a)
+  { inf :: !(f a) -- ^ The infimum, or lower bound.
+  , sup :: !(f a) -- ^ The supremum, or upper bound.
   }
   deriving (Eq, Foldable, Functor, Generic, Ord, Traversable)
 

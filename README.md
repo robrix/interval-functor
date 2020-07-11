@@ -37,3 +37,8 @@ Once the repl has loaded, you can run the tests with `:main`.
 ```
 
 Configuration exists for `ghcide`, which can be integrated into many editors.
+
+
+## Advantages
+
+`interval-functor` separates the representation of the coordinates of an interval from the representation of the space the coordinates occur in. This makes it particularly suitable for consistent treatment of multi-dimensional intervals; operations like e.g. `union` extend naturally to multi-dimensional spaces.

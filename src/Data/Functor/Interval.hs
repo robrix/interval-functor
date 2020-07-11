@@ -283,6 +283,15 @@ fromUnit i x = liftI (\ inf sup t -> (1 - t) * inf + t * sup) i <*> x
 -- | Transform a point linearly between the subspaces described by non-point intervals.
 --
 -- @
+-- transform i j (inf i) = inf j
+-- @
+-- @
+-- transform i j (midpoint i) = midpoint j
+-- @
+-- @
+-- transform i j (sup i) = sup j
+-- @
+-- @
 -- transform i i = id
 -- @
 -- @

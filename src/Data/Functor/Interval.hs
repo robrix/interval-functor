@@ -334,6 +334,7 @@ traverseInterval f = uncurryI (liftA2 Interval `on` f)
 
 -- Predicates
 
+-- | Test a point for inclusion within an interval.
 member :: (Applicative f, Foldable f, Ord a) => f a -> Interval f a -> Bool
 member = isSubintervalOf . point
 

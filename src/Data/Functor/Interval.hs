@@ -262,7 +262,7 @@ liftEnum = liftI enumFromTo
 
 toUnit, fromUnit :: (Applicative f, Fractional a) => Interval f a -> f a -> f a
 
--- | Linearly transform a point in @f@ from an interval of @f@ to the unit interval.
+-- | Linearly transform a point in @f@ from a non-point interval of @f@ to the unit interval.
 toUnit   i x = liftI (\ inf sup x -> (x - inf) / (sup - inf))        i <*> x
 {-# INLINE toUnit #-}
 

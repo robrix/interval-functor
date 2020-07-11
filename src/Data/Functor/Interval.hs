@@ -267,7 +267,7 @@ toUnit   i x = liftI (\ inf sup x -> (x - inf) / (sup - inf))        i <*> x
 {-# INLINE toUnit #-}
 
 -- | Linearly transform a point in @f@ from the unit interval to an interval of @f@.
-fromUnit i x = liftI (\ inf sup x ->  x        * (sup - inf)  + inf) i <*> x
+fromUnit i x = liftI (\ inf sup t -> (1 - t) * inf + t * sup) i <*> x
 {-# INLINE fromUnit #-}
 
 -- | Linearly interpolate between the endpoints of an interval.

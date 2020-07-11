@@ -21,7 +21,7 @@ module Data.Functor.Interval
 , liftI
   -- * Enumerations
 , enum
-, ranges
+, liftEnum
   -- * Conversions
 , toUnit
 , fromUnit
@@ -229,8 +229,8 @@ liftI f = uncurryI (liftA2 f)
 enum :: Enum (f a) => Interval f a -> [f a]
 enum = uncurryI enumFromTo
 
-ranges :: (Applicative f, Enum a) => Interval f a -> f [a]
-ranges = liftI enumFromTo
+liftEnum :: (Applicative f, Enum a) => Interval f a -> f [a]
+liftEnum = liftI enumFromTo
 
 
 -- Conversions

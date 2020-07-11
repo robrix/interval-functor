@@ -271,6 +271,10 @@ toUnit   i x = liftI (\ inf sup t -> (t - inf) / (sup - inf)) i <*> x
 {-# INLINE toUnit #-}
 
 -- | Linearly transform a point in @f@ from the unit interval to an interval of @f@.
+--
+-- @
+-- fromUnit i . toUnit i = id
+-- @
 fromUnit i x = liftI (\ inf sup t -> (1 - t) * inf + t * sup) i <*> x
 {-# INLINE fromUnit #-}
 

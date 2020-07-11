@@ -21,7 +21,7 @@ tests = map checkParallel
   [ Group "point"
     [ (,) "membership" $ property $ do
       p <- pure <$> forAll gp
-      member p (point p :: Interval Identity Int) === True
+      assert $ p `member` (point p :: Interval Identity Int)
     ]
 
   , Group "lerp"

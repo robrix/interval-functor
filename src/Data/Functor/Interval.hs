@@ -24,7 +24,7 @@ module Data.Functor.Interval
 , fromUnit
 , wrap
   -- * Traversals
-, imap
+, mapInterval
   -- * Predicates
 , member
 , isValid
@@ -59,7 +59,7 @@ data Interval f a = Interval
   deriving
     ( Eq
     , Foldable -- ^ Folds over each coordinate of the endpoints.
-    , Functor  -- ^ Maps over each coordinate of the endpoints. See 'imap' for mapping over the endpoints themselves.
+    , Functor  -- ^ Maps over each coordinate of the endpoints. See 'mapInterval' for mapping over the endpoints themselves.
     , Generic
     , Ord
     , Traversable
@@ -225,12 +225,12 @@ wrap i x = liftI (\ inf sup x -> ((x + sup) `mod'` (sup - inf)) + inf) i <*> x
 
 -- | Map over an interval’s endpoints.
 --
--- Where 'fmap' only maps over the individual coordinates, 'imap' can change the space as well.
+-- Where 'fmap' only maps over the individual coordinates, 'mapInterval' can change the space as well.
 --
--- >>> imap (\ (V2 x y) -> V3 x y 0) (Interval (V2 1 2) (V2 3 4))
+-- >>> mapInterval (\ (V2 x y) -> V3 x y 0) (Interval (V2 1 2) (V2 3 4))
 -- V3 1 2 0...V3 3 4 0
-imap :: (f a -> g b) -> Interval f a -> Interval g b
-imap f i = Interval (f (inf i)) (f (sup i))
+mapInterval :: (f a -> g b) -> Interval f a -> Interval g b
+mapInterval f i = Interval (f (inf i)) (f (sup i))
 
 
 -- Predicates

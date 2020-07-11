@@ -450,6 +450,10 @@ isProperSuperintervalOf = flip isProperSubintervalOf
 
 
 -- | Test whether two intervals intersect.
+--
+-- @
+-- i `intersects` i = True
+-- @
 intersects :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
 intersects a b = isValid (intersection a b)
 {-# INLINE intersects #-}

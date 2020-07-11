@@ -65,7 +65,7 @@ data Interval f a = Interval
     , Functor  -- ^ Maps over each coordinate of the endpoints. See 'mapInterval' for mapping over the endpoints themselves.
     , Generic
     , Ord
-    , Traversable
+    , Traversable -- ^ Traverses over each coordinate of the endpoints.
     )
 
 instance Show (f a) => Show (Interval f a) where

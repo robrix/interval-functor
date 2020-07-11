@@ -387,6 +387,7 @@ instance (Applicative f, Ord a) => Semigroup (Union f a) where
 -- This is equivalent to the 'Semigroup' instance for 'Interval' (and for 'Union'), and is provided for clarity and convenience.
 union :: forall f a . (Applicative f, Ord a) => Interval f a -> Interval f a -> Interval f a
 union = coerce ((<>) :: Union f a -> Union f a -> Union f a)
+{-# INLINE union #-}
 
 
 -- | 'Interval's form a 'Semigroup' under intersection.

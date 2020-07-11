@@ -273,6 +273,9 @@ mapInterval f i = Interval (f (inf i)) (f (sup i))
 -- @
 -- traverse f = traverseInterval (traverse f)
 -- @
+-- @
+-- foldMapInterval f ≅ getConst . traverseInterval (Const . f)
+-- @
 traverseInterval :: Applicative m => (f a -> m (g b)) -> Interval f a -> m (Interval g b)
 traverseInterval f i = Interval <$> f (inf i) <*> f (sup i)
 

@@ -221,7 +221,7 @@ liftI f = uncurryI (liftA2 f)
 -- Enumerations
 
 range :: Enum (f a) => Interval f a -> [f a]
-range = enumFromTo . inf <*> sup
+range = uncurryI enumFromTo
 
 ranges :: (Applicative f, Enum a) => Interval f a -> f [a]
 ranges = liftI enumFromTo

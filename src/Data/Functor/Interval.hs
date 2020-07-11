@@ -396,7 +396,9 @@ newtype Intersection f a = Intersection { getIntersection :: Interval f a }
 
 instance (Applicative f, Ord a) => Semigroup (Intersection f a) where
   Intersection i1 <> Intersection i2 = Intersection ((max...min) <*> i1 <*> i2)
+  {-# INLINE (<>) #-}
   stimes = stimesIdempotent
+  {-# INLINE stimes #-}
 
 -- | Take the intersection of two intervals.
 --

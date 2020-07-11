@@ -453,11 +453,23 @@ isSuperintervalOf = flip isSubintervalOf
 {-# INLINE isSuperintervalOf #-}
 
 -- | Test whether one interval is a proper subinterval of another (i.e. a subinterval, but not equal).
+-- @
+-- i `isProperSubintervalOf` i = False
+-- @
+-- @
+-- (i `isProperSubintervalOf` j) && (j `isProperSubintervalOf` k) => (i `isProperSubintervalOf` k)
+-- @
 isProperSubintervalOf :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
 isProperSubintervalOf a b = isSubintervalOf a b && or (liftA2 (/=) a b)
 {-# INLINE isProperSubintervalOf #-}
 
 -- | Test whether one interval is a proper superinterval of another (i.e. a superinterval, but not equal).
+-- @
+-- i `isProperSuperintervalOf` i = False
+-- @
+-- @
+-- (i `isProperSuperintervalOf` j) && (j `isProperSuperintervalOf` k) => (i `isProperSuperintervalOf` k)
+-- @
 isProperSuperintervalOf :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
 isProperSuperintervalOf = flip isProperSubintervalOf
 {-# INLINE isProperSuperintervalOf #-}

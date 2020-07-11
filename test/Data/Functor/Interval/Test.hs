@@ -50,6 +50,13 @@ tests = map checkParallel
       fromUnit i (toUnit i p) === p
     ]
 
+  , Group "transform"
+    [ (,) "identity" $ property $ do
+      i <- forAll (interval gf) >>= forAll . properSuperinterval
+      p <- pure <$> forAll gf
+      transform i i p === p
+    ]
+
   , Group "lerp"
     [ (,) "infimum" $ property $ do
       i <- forAll gi

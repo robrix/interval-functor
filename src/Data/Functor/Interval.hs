@@ -141,6 +141,7 @@ instance (Applicative f, Floating a) => Floating (Interval f a) where
   acosh = fmap acosh
   {-# INLINE acosh #-}
 
+-- | '<>' is a synonym for 'union'.
 instance (Applicative f, Ord a) => Semigroup (Interval f a) where
   (<>) = union
   {-# INLINE (<>) #-}

@@ -35,6 +35,7 @@ module Data.Functor.Interval
   -- * Predicates
 , member
 , isValid
+, isEmpty
 , isPoint
   -- * Relations
 , isSubintervalOf
@@ -344,6 +345,11 @@ member = isSubintervalOf . point
 isValid :: (Applicative f, Foldable f, Ord a) => Interval f a -> Bool
 isValid = uncurryI lte
 {-# INLINE isValid #-}
+
+-- | Test an interval for validity, i.e. non-emptiness.
+isEmpty :: (Applicative f, Foldable f, Ord a) => Interval f a -> Bool
+isEmpty = not . isValid
+{-# INLINE isEmpty #-}
 
 -- | Test whether an interval is a singleton.
 isPoint :: (Applicative f, Foldable f, Eq a) => Interval f a -> Bool

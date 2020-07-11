@@ -13,6 +13,7 @@ import           Control.Monad (join)
 import           Data.Function ((&))
 import           Data.Functor.Identity
 import           Data.Functor.Interval
+import           Data.Semigroup as S ((<>))
 import           Hedgehog
 import qualified Hedgehog.Gen as Gen
 import qualified Hedgehog.Range as Range
@@ -134,7 +135,7 @@ prop_isSubintervalOf_reflexivity = property $ do
 
 prop_isSubintervalOf_transitivity = property $ do
   (i1, i2, i3) <- forAll gi >>= \ i1 -> forAll (superinterval i1) >>= \ i2 -> (,,) i1 i2 <$> forAll (superinterval i2)
-  label $ (if i1 == i2 then "i1 = i2" else "i1 ⊂ i2") <> " ∧ " <> (if i2 == i3 then "i2 = i3" else "i2 ⊂ i3")
+  label $ (if i1 == i2 then "i1 = i2" else "i1 ⊂ i2") S.<> " ∧ " S.<> (if i2 == i3 then "i2 = i3" else "i2 ⊂ i3")
   assert (i1 `isSubintervalOf` i3)
 
 prop_isSubintervalOf_offset = property $ do
@@ -150,7 +151,7 @@ prop_isSuperintervalOf_reflexivity = property $ do
 
 prop_isSuperintervalOf_transitivity = property $ do
   (i1, i2, i3) <- forAll gi >>= \ i1 -> forAll (superinterval i1) >>= \ i2 -> (,,) i1 i2 <$> forAll (superinterval i2)
-  label $ (if i1 == i2 then "i1 = i2" else "i1 ⊂ i2") <> " ∧ " <> (if i2 == i3 then "i2 = i3" else "i2 ⊂ i3")
+  label $ (if i1 == i2 then "i1 = i2" else "i1 ⊂ i2") S.<> " ∧ " S.<> (if i2 == i3 then "i2 = i3" else "i2 ⊂ i3")
   assert (i3 `isSuperintervalOf` i1)
 
 prop_isSuperintervalOf_offset = property $ do

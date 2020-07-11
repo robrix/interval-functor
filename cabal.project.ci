@@ -1,0 +1,4 @@
+packages: .
+
+package interval-functor
+  ghc-options: -Werror

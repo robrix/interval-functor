@@ -175,6 +175,10 @@ inf...sup = Interval (pure inf) (pure sup)
 infix 3 ...
 
 -- | Construct a point (or /degenerate/) interval from the given endpoint.
+--
+-- >>> import Linear.V2
+-- >>> point (V2 0 1)
+-- V2 0 1...V2 0 1
 point :: f a -> Interval f a
 point p = Interval p p
 

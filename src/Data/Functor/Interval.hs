@@ -433,6 +433,9 @@ isPoint = and . liftI (==)
 -- @
 -- i `isSubintervalOf` i = True
 -- @
+-- @
+-- (i `isSubintervalOf` j) && (j `isSubintervalOf` k) => (i `isSubintervalOf` k)
+-- @
 isSubintervalOf :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
 isSubintervalOf a b = inf a `gte` inf b && sup a `lte` sup b
 {-# INLINE isSubintervalOf #-}
@@ -441,6 +444,9 @@ isSubintervalOf a b = inf a `gte` inf b && sup a `lte` sup b
 --
 -- @
 -- i `isSuperintervalOf` i = True
+-- @
+-- @
+-- (i `isSuperintervalOf` j) && (j `isSuperintervalOf` k) => (i `isSuperintervalOf` k)
 -- @
 isSuperintervalOf :: (Applicative f, Foldable f, Ord a) => Interval f a -> Interval f a -> Bool
 isSuperintervalOf = flip isSubintervalOf

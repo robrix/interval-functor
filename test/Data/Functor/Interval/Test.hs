@@ -51,7 +51,11 @@ tests = map checkParallel
     ]
 
   , Group "transform"
-    [ (,) "identity" $ property $ do
+    [ (,) "infimum" $ property $ do
+      i <- forAll (interval gf) >>= forAll . properSuperinterval
+      j <- forAll (interval gf) >>= forAll . properSuperinterval
+      transform i j (inf i) === inf j
+    , (,) "identity" $ property $ do
       i <- forAll (interval gf) >>= forAll . properSuperinterval
       p <- pure <$> forAll gf
       transform i i p === p

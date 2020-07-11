@@ -14,6 +14,7 @@ module Data.Functor.Interval
   -- * Constructors
 , (...)
 , point
+  -- * Eliminators
 , liftI
 , size
 , toUnit
@@ -169,6 +170,9 @@ infix 3 ...
 
 point :: f a -> Interval f a
 point p = Interval p p
+
+
+-- Eliminators
 
 liftI :: Applicative f => (a -> a -> b) -> Interval f a -> f b
 liftI f i = liftA2 f (inf i) (sup i)

@@ -57,3 +57,7 @@ test-suite test
     , base
     , hedgehog
     , interval-functor
+
+source-repository head
+  type:     git
+  location: https://github.com/robrix/interval-functor

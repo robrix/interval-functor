@@ -187,6 +187,7 @@ point :: f a -> Interval f a
 point p = Interval p p
 
 
+-- | Map over an interval’s endpoints.
 imap :: (f a -> g b) -> Interval f a -> Interval g b
 imap f i = Interval (f (inf i)) (f (sup i))
 

@@ -15,7 +15,6 @@ module Data.Functor.Interval
   -- * Constructors
 , (...)
 , point
-, imap
   -- * Eliminators
 , diameter
 , liftI
@@ -24,6 +23,8 @@ module Data.Functor.Interval
 , toUnit
 , fromUnit
 , wrap
+  -- * Traversals
+, imap
   -- * Predicates
 , member
 , isValid
@@ -195,16 +196,6 @@ point :: f a -> Interval f a
 point p = Interval p p
 
 
--- | Map over an interval’s endpoints.
---
--- Where 'fmap' only maps over the individual coordinates, 'imap' can change the space as well.
---
--- >>> imap (\ (V2 x y) -> V3 x y 0) (Interval (V2 1 2) (V2 3 4))
--- V3 1 2 0...V3 3 4 0
-imap :: (f a -> g b) -> Interval f a -> Interval g b
-imap f i = Interval (f (inf i)) (f (sup i))
-
-
 -- Eliminators
 
 -- | Compute the diameter of an interval, defined as its supremum minus its infimum.
@@ -228,6 +219,18 @@ fromUnit i x = liftI (\ inf sup x ->  x        * (sup - inf)  + inf) i <*> x
 
 wrap :: (Applicative f, Real a) => Interval f a -> f a -> f a
 wrap i x = liftI (\ inf sup x -> ((x + sup) `mod'` (sup - inf)) + inf) i <*> x
+
+
+-- Traversals
+
+-- | Map over an interval’s endpoints.
+--
+-- Where 'fmap' only maps over the individual coordinates, 'imap' can change the space as well.
+--
+-- >>> imap (\ (V2 x y) -> V3 x y 0) (Interval (V2 1 2) (V2 3 4))
+-- V3 1 2 0...V3 3 4 0
+imap :: (f a -> g b) -> Interval f a -> Interval g b
+imap f i = Interval (f (inf i)) (f (sup i))
 
 
 -- Predicates

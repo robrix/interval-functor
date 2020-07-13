@@ -1,5 +1,9 @@
 # `interval-functor`
 
+[![Hackage](https://img.shields.io/hackage/v/interval-functor.svg)](https://hackage.haskell.org/package/interval-functor)
+[![BSD3 license](https://img.shields.io/badge/license-BSD3-blue.svg)](LICENSE)
+[![Build Status](https://action-badges.now.sh/robrix/interval-functor)](https://github.com/robrix/interval-functor/actions)
+
 This is a Haskell package defining an `Interval` datatype parameterized by the type of endpoints and the type of their coordinates. For example, it can represent a simple one-dimensional range:
 
 ```haskell

@@ -52,6 +52,7 @@ module Data.Functor.Interval
 ) where
 
 import Control.Applicative (liftA2)
+import Control.DeepSeq (NFData)
 import Control.Monad.Trans.Class
 import Data.Coerce (coerce)
 import Data.Fixed (mod')
@@ -92,6 +93,8 @@ instance  Ord1 f => Ord1 (Interval f) where
   liftCompare f (Interval u v) (Interval u' v') = case liftCompare f u u' of
     EQ -> liftCompare f v v'
     x -> x
+
+instance NFData (f a) => NFData (Interval f a)
 
 instance Applicative f => Applicative (Interval f) where
   pure = point . pure

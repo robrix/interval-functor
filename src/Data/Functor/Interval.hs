@@ -56,7 +56,9 @@ import Control.Monad.Trans.Class
 import Data.Coerce (coerce)
 import Data.Fixed (mod')
 import Data.Function (on)
+import Data.Functor.Classes (Show1, liftShowsPrec)
 import Data.Semigroup
+import Generic.Data (gliftShowsPrec)
 import GHC.Generics (Generic, Generic1)
 
 -- | @f@-dimensional intervals with coordinates in @a@.
@@ -77,6 +79,9 @@ data Interval f a = Interval
 instance Show (f a) => Show (Interval f a) where
   showsPrec p i = showParen (p > 3) $ showsPrec 4 (inf i) . showString "..." . showsPrec 4 (sup i)
   {-# INLINE showsPrec #-}
+
+instance Show1 f => Show1 (Interval f) where
+  liftShowsPrec = gliftShowsPrec
 
 instance Applicative f => Applicative (Interval f) where
   pure = point . pure

@@ -56,7 +56,7 @@ import Control.Monad.Trans.Class
 import Data.Coerce (coerce)
 import Data.Fixed (mod')
 import Data.Function (on)
-import Data.Functor.Classes (Show1, liftShowsPrec)
+import Data.Functor.Classes (Show1, liftShowsPrec, Eq1, liftEq)
 import Data.Semigroup
 import Generic.Data (gliftShowsPrec)
 import GHC.Generics (Generic, Generic1)
@@ -82,6 +82,11 @@ instance Show (f a) => Show (Interval f a) where
 
 instance Show1 f => Show1 (Interval f) where
   liftShowsPrec = gliftShowsPrec
+
+instance Eq1 f => Eq1 (Interval f) where
+  liftEq f (Interval u v) (Interval u' v') = case liftEq f u u' of
+    True -> liftEq f v v'
+    False -> False
 
 instance Applicative f => Applicative (Interval f) where
   pure = point . pure

@@ -1,7 +1,7 @@
 cabal-version:       2.2
 
 name:                interval-functor
-version:             0.0.0.0
+version:             0.1.0.0
 synopsis:            Intervals of functors.
 description:         Closed intervals in spaces described by a functor.
 homepage:            https://github.com/robrix/interval-functor

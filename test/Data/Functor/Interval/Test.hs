@@ -83,12 +83,12 @@ prop_transform_inverse = property $ do
 prop_transform_fromUnit = property $ do
   i <- forAll (interval gf)
   p <- pure <$> forAll gf
-  transform (0...1) i p === fromUnit i p
+  transform (0 ... 1) i p === fromUnit i p
 
 prop_transform_toUnit = property $ do
   i <- forAll (interval gf) >>= forAll . properSuperinterval
   p <- pure <$> forAll gf
-  transform i (0...1) p === toUnit i p
+  transform i (0 ... 1) p === toUnit i p
 
 
 prop_lerp_infimum = property $ do
@@ -229,7 +229,7 @@ prop_intersection_commutativity = property $ do
 
 prop_interval_validity = property (forAll gi >>= assert . isValid)
 
-prop_interval_coverage = verifiedTermination . withConfidence (10^(6 :: Int)) . property $ do
+prop_interval_coverage = verifiedTermination . withConfidence (10 ^ (6 :: Int)) . property $ do
   i <- forAll gi
   cover 20 "point" (isPoint i)
   cover 20 "span" (inf i < sup i)
@@ -239,7 +239,7 @@ prop_superinterval_validity = property (forAll gi >>= forAll . superinterval >>=
 
 prop_superinterval_correctness = property (forAll gi >>= \ i -> forAll (superinterval i) >>= assert . isSubintervalOf i)
 
-prop_superinterval_coverage = verifiedTermination . withConfidence (10^(6 :: Int)) . property $ do
+prop_superinterval_coverage = verifiedTermination . withConfidence (10 ^ (6 :: Int)) . property $ do
   i <- forAll gi
   si <- forAll (superinterval i)
   cover 20 "=" (i == si)
@@ -252,7 +252,7 @@ prop_properSuperinterval_validity = property (forAll gi >>= forAll . properSuper
 
 prop_properSuperinterval_correctness = property (forAll gi >>= \ i -> forAll (properSuperinterval i) >>= assert . isProperSubintervalOf i)
 
-prop_properSuperinterval_coverage = verifiedTermination . withConfidence (10^(6 :: Int)) . property $ do
+prop_properSuperinterval_coverage = verifiedTermination . withConfidence (10 ^ (6 :: Int)) . property $ do
   i <- forAll gi
   si <- forAll (properSuperinterval i)
   cover 20 "inf si == inf i" $ inf si == inf i

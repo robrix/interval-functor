@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -Wno-unused-imports #-} -- for liftA2, exported in 9.6 but not in earlier
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE DeriveTraversable #-}
 {-# LANGUAGE FlexibleInstances #-}
@@ -191,7 +192,7 @@ sup_ = lens sup $ \ i sup -> i{ sup }
 -- >>> 0...1 :: Interval V2 Int
 -- V2 0 0...V2 1 1
 (...) :: Applicative f => a -> a -> Interval f a
-inf...sup = Interval (pure inf) (pure sup)
+inf ... sup = Interval (pure inf) (pure sup)
 {-# INLINE (...) #-}
 
 infix 3 ...
@@ -497,7 +498,7 @@ newtype Union f a = Union { getUnion :: Interval f a }
   deriving (Applicative, Eq, Foldable, Functor, Monad, Ord, Show, Traversable)
 
 instance (Applicative f, Ord a) => Semigroup (Union f a) where
-  Union i1 <> Union i2 = Union ((min...max) <*> i1 <*> i2)
+  Union i1 <> Union i2 = Union ((min ... max) <*> i1 <*> i2)
   {-# INLINE (<>) #-}
   stimes = stimesIdempotent
   {-# INLINE stimes #-}
@@ -515,7 +516,7 @@ newtype Intersection f a = Intersection { getIntersection :: Interval f a }
   deriving (Applicative, Eq, Foldable, Functor, Monad, Ord, Show, Traversable)
 
 instance (Applicative f, Ord a) => Semigroup (Intersection f a) where
-  Intersection i1 <> Intersection i2 = Intersection ((max...min) <*> i1 <*> i2)
+  Intersection i1 <> Intersection i2 = Intersection ((max ... min) <*> i1 <*> i2)
   {-# INLINE (<>) #-}
   stimes = stimesIdempotent
   {-# INLINE stimes #-}

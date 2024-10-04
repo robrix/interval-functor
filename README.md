@@ -31,7 +31,7 @@ Development currently assumes a Mac with `ghc` 8.10 & `cabal` 3.0. You can insta
 
 ```bash
 cabal build --enable-tests # initial build
-script/repl # load the library and tests in ghci
+cabal repl # load the library and tests in ghci
 ```
 
 Once the repl has loaded, you can run the tests with `:main`.
@@ -40,7 +40,7 @@ Once the repl has loaded, you can run the tests with `:main`.
 λ :main
 ```
 
-Configuration exists for `ghcide`, which can be integrated into many editors.
+Configuration exists for `haskell-ide-engine`, which can be integrated into many editors.
 
 
 ## Advantages

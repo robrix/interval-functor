@@ -65,7 +65,9 @@ test-suite test
   main-is: Test.hs
   other-modules:
     Data.Functor.Interval.Test
-  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  ghc-options:
+    -threaded -rtsopts -with-rtsopts=-N
+    -Wno-missing-signatures
   build-depends:
     , base
     , hedgehog

@@ -1,4 +1,4 @@
-cabal-version:       2.2
+cabal-version:       3.0
 
 name:                interval-functor
 version:             0.0.0.0

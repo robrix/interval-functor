@@ -1,7 +1,7 @@
 cabal-version:       3.0
 
 name:                interval-functor
-version:             0.0.0.0
+version:             0.0.0.1
 synopsis:            Intervals of functors.
 description:         Closed intervals in spaces described by a functor.
 homepage:            https://github.com/robrix/interval-functor
@@ -22,6 +22,12 @@ tested-with:
   GHC == 8.6.5
   GHC == 8.8.3
   GHC == 8.10.1
+  GHC == 9.0.1
+  GHC == 9.2.1
+  GHC == 9.4.2
+  GHC == 9.6.2
+  GHC == 9.8.2
+  GHC == 9.10.1
 
 common warnings
   ghc-options:
@@ -31,7 +37,6 @@ common warnings
     -Wno-missed-specialisations
     -Wno-missing-import-lists
     -Wno-missing-local-signatures
-    -Wno-missing-safe-haskell-mode
     -Wno-monomorphism-restriction
     -Wno-name-shadowing
     -Wno-safe
@@ -45,9 +50,12 @@ common warnings
   if (impl(ghc >= 9.2))
     ghc-options:
       -Wno-missing-kind-signatures
-  if (impl(ghc >= 9.10))
+  if (impl(ghc >= 9.8))
     ghc-options:
       -Wno-missing-role-annotations
+      -Wno-term-variable-capture
+      -Wno-x-partial
+      -Wno-missing-poly-kind-signatures
 
 library
   import: warnings
